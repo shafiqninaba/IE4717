@@ -1,9 +1,6 @@
 function validateForm() {
-    var fname = document.getElementById('fname').value;
-    var lname = document.getElementById('lname').value;
     var email = document.getElementById('email').value;
     var mobile = document.getElementById('mobile').value;
-    var address = document.getElementById('address').value;
 
     // Email validation using a regular expression
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;

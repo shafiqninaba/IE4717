@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>SneakerHive</title>
+    <link rel="icon" href="images/favicon.ico">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="shipping_validation.js"></script>
+</head>
+
+<body>
+    <div class= "header">
+        <a href="index.html" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
+        <a href="shop.html">Shop</a>
+        <a href="about_us.html">About Us</a>
+        <div class="header-right">
+            <a href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a href="cart.html"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="active" href="account.html"><img src = images/user_icon.svg alt="account"></a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="account-content-body">
+        <div class="sidebar">
+            <ul>
+                <li><a href="account.html"><u>Profile Details</u></a></li>
+                <li><a href="orders.html">Track My Order</a></li>
+                <li><a href="#logout">Logout</a></li>
+            
+            </ul>
+        </div>
+        <div class="login-container signup">
+            <h1>Profile Details</h1>
+            <form class="signup-form" onsubmit="return validateForm()">
+                <table>
+                    <tr>
+                        <td colspan="2"><label for="username">Email</label>
+                        <input type="text" id="email" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label for="password">Password</label>
+                        <input type="password" id="password" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label for="password">Confirm Password</label>
+                        <input type="password" id="password" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="firstname">First Name</label>
+                        <input type="text" id="firstname" required></td>
+                    
+                        <td><label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gender">Gender</label>
+                            <select id="gender" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </td>
+                        <td>
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" required>
+    
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label for="phone">Mobile Number</label>
+                            <input type="text" id="mobile" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label for="address">Address</label>
+                        <input type="text" id="address" required></td>
+                    </tr>
+                </table>
+                <button type="submit">Edit</button>
+            </form>
+    </div>
+    </div>
+
+
+    <footer>
+    <div class = "footer">
+      <div class="newsletter footer-left"  >
+      <h3 id="newsletter-title">Sign up for our newsletter</h3>
+      <p id="newsletter-description">Be the first to know about our special offers, new product launches and events</p>
+    </div>
+    <div class="newsletter" id = "newsletter-form">
+      <form>
+        <input type="text" name="email" placeholder="Email Address">
+        <button type="submit" >Sign up</button>
+      </form>
+    </div>
+    <div class="newsletter footer-right">
+        <table>
+            <tr><td><h4>Shop</h4></td>
+                <td><h4>About</h4></td>
+            </tr>
+            <tr><td><a href="#shop">Women's</a></td>
+                <td><a href="#shop">About us</a></td>
+            </tr>
+            <tr><td><a href="#shop">Men's</a></td></tr>
+            <tr><td><a href="#shop">Kids'</a></td></tr>
+        </table>
+    </div>
+</div>
+    <div class="copyright">
+        <hr>
+      <p>&copy; 2023 SneakerHive. All Rights Reserved.</p>
+      </div>
+    
+    </footer>
+        
+
+    
+</body>
+</html>
