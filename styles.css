@@ -47,7 +47,12 @@ body {
   float: right;
 }
 
-@media screen and (max-width: 500px) {
+.header .icon{
+  display: none;
+  padding-top: 15px;
+}
+
+/* @media screen and (max-width: 720px) {
   .header a {
     float: none;
     display: block;
@@ -57,6 +62,36 @@ body {
     .header-right {
         float: none;
     }
+} */
+
+/* RESPONSIVE NAVBAR */
+@media screen and (max-width: 720px) {
+  .header a:not(:first-child) {display: none;}
+  .header a[href="#liked"]{display: none;}
+  .header a.icon {
+    float: right;
+    display: block;
+  }
+  .header-right{
+    float: left;
+  }
+}
+
+
+@media screen and (max-width: 720px) {
+  .header.responsive {position: relative;}
+  .header.responsive .icon {
+    float: right;
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+  }
+  .header.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
 /*********/
 
