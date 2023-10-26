@@ -1,4 +1,17 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+// function: if user is logged in, return true, else return false
+function logged_in() {
+  return isset($_SESSION['valid_user']);
+}
+
+function header_class($function){
+  if ($function) {echo 'hidden';} else {echo '';}
+}
+
+?>
+
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -11,14 +24,14 @@
 
 <body>
     <div class= "header" id="myTopnav">
-        <a href="index.html" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
-        <a href="shop.html">Shop</a>
-        <a href="about_us.html">About Us</a>
-        <div class="header-right">
-            <a href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a href="cart.html"><img src = images/shopping_bag.svg alt="shopping cart"></a>
-            <a href="account.html"><img src = images/user_icon.svg alt="account"></a>
-            <a href="login.html">Login</a>
+      <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
+      <a class="" href="shop.php">Shop</a>
+      <a class="" href="about_us.php">About Us</a>
+      <div class="header-right">
+          <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+          <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+          <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
+          <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
         <a class= "icon" href="javascript:void(0);" onclick="myFunction()">
             <img src = images/hamburger_menu.svg alt="menu">
@@ -111,8 +124,8 @@
       <p id="newsletter-description">Be the first to know about our special offers, new product launches and events</p>
     </div>
     <div class="newsletter" id = "newsletter-form">
-      <form>
-        <input type="text" name="email" placeholder="Email Address">
+      <form action="submit_newsletter.php" method="POST">
+        <input type="text" name="newsletter_email" placeholder="Email Address">
         <button type="submit" >Sign up</button>
       </form>
     </div>

@@ -1,3 +1,16 @@
+<?php
+session_start();
+// function: if user is logged in, return true, else return false
+function logged_in() {
+  return isset($_SESSION['valid_user']);
+}
+
+function header_class($function){
+  if ($function) {echo 'hidden';} else {echo '';}
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,23 +25,23 @@
 
 <body>
     <div class= "header">
-        <a href="index.html" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
-        <a href="shop.html">Shop</a>
-        <a href="about_us.html">About Us</a>
+        <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
+        <a class="" href="shop.php">Shop</a>
+        <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a href="cart.html"><img src = images/shopping_bag.svg alt="shopping cart"></a>
-            <a class="active" href="account.html"><img src = images/user_icon.svg alt="account"></a>
-            <a href="login.html">Login</a>
+            <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a class="active" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="active" href="account.php"><img src = images/user_icon.svg alt="account"></a>
+            <a class="" href="login.php">Login</a>
         </div>
     </div>
 
     <div class="account-content-body">
         <div class="sidebar">
             <ul>
-                <li><a href="account.html">Profile Details</a></li>
-                <li><a href="orders.html"><u>Track My Order</u></a></li>
-                <li><a href="#logout">Logout</a></li>
+                <li><a href="account.php">Profile Details</a></li>
+                <li><a href="orders.php"><u>Track My Order</u></a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
         <div class="track-order-container">
@@ -102,8 +115,8 @@
       <p id="newsletter-description">Be the first to know about our special offers, new product launches and events</p>
     </div>
     <div class="newsletter" id = "newsletter-form">
-      <form>
-        <input type="text" name="email" placeholder="Email Address">
+      <form action="submit_newsletter.php" method="POST">
+        <input type="text" name="newsletter_email" placeholder="Email Address">
         <button type="submit" >Sign up</button>
       </form>
     </div>

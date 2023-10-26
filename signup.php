@@ -1,3 +1,16 @@
+<?php
+session_start();
+// function: if user is logged in, return true, else return false
+function logged_in() {
+  return isset($_SESSION['valid_user']);
+}
+
+function header_class($function){
+  if ($function) {echo 'hidden';} else {echo '';}
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,44 +25,44 @@
 
 <body>
     <div class= "header">
-        <a href="index.html" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
-        <a href="shop.html">Shop</a>
-        <a href="about_us.html">About Us</a>
+        <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
+        <a class="" href="shop.php">Shop</a>
+        <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a href="cart.html"><img src = images/shopping_bag.svg alt="shopping cart"></a>
-            <a href="account.html"><img src = images/user_icon.svg alt="account"></a>
-            <a class="active" href="login.html">Login</a>
+            <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="" href="account.php"><img src = images/user_icon.svg alt="account"></a>
+            <a class="active" href="login.php">Login</a>
         </div>
     </div>
     <!-- signup form -->
     <div class="login-container signup">
         <h1>Create an Account</h1>
-        <form class="signup-form" onsubmit="return validateForm()">
+        <form action="register.php" method = "post" class="signup-form" onsubmit="return validateForm()">
             <table>
                 <tr>
-                    <td colspan="2"><label for="username">Email</label>
-                    <input type="text" id="email" required></td>
+                    <td colspan="2"><label for="email">Email</label>
+                    <input type="text" name ="email" id="email" required></td>
                 </tr>
                 <tr>
                     <td colspan="2"><label for="password">Password</label>
-                    <input type="password" id="password" required></td>
+                    <input type="password" name ="password" id="password" required></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><label for="password">Confirm Password</label>
-                    <input type="password" id="password" required></td>
+                    <td colspan="2"><label for="confirm_password">Confirm Password</label>
+                    <input type="password" name ="confirm_password" id="confirm_password" required></td>
                 </tr>
                 <tr>
                     <td><label for="firstname">First Name</label>
-                    <input type="text" id="firstname" required></td>
+                    <input type="text" name ="firstname" id="firstname" required></td>
                 
                     <td><label for="lastname">Last Name</label>
-                    <input type="text" id="lastname" required></td>
+                    <input type="text" name ="lastname" id="lastname" required></td>
                 </tr>
                 <tr>
                     <td>
                         <label for="gender">Gender</label>
-                        <select id="gender" required>
+                        <select name ="gender" id="gender" required>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="other">Other</option>
@@ -57,23 +70,23 @@
                     </td>
                     <td>
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" required>
+                    <input type="date" name= "dob" id="dob" required>
 
                 </tr>
                 <tr>
                     <td colspan="2">
                         <label for="phone">Mobile Number</label>
-                        <input type="text" id="mobile" required>
+                        <input type="text" name= "mobile" id="mobile" required>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2"><label for="address">Address</label>
-                    <input type="text" id="address" required></td>
+                    <input type="text" name= "address" id="address" required></td>
                 </tr>
             </table>
             <button type="submit">Create</button>
         </form>
-        <p><i>Already have an account? <a href="login.html">Login here</a></i></p>
+        <p><i>Already have an account? <a href="login.php">Login here</a></i></p>
 </div>
 
 
@@ -84,8 +97,8 @@
       <p id="newsletter-description">Be the first to know about our special offers, new product launches and events</p>
     </div>
     <div class="newsletter" id = "newsletter-form">
-      <form>
-        <input type="text" name="email" placeholder="Email Address">
+      <form action="submit_newsletter.php" method="POST">
+        <input type="text" name="newsletter_email" placeholder="Email Address">
         <button type="submit" >Sign up</button>
       </form>
     </div>

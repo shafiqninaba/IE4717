@@ -1,3 +1,16 @@
+<?php
+session_start();
+// function: if user is logged in, return true, else return false
+function logged_in() {
+  return isset($_SESSION['valid_user']);
+}
+
+function header_class($function){
+  if ($function) {echo 'hidden';} else {echo '';}
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -7,41 +20,70 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
-    <script src="shipping_validation.js"></script>
 </head>
 
 <body>
     <div class= "header">
-        <a href="index.html" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
-        <a href="shop.html">Shop</a>
-        <a href="about_us.html">About Us</a>
+        <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
+        <a class="" href="shop.php">Shop</a>
+        <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="active" href="cart.html"><img src = images/shopping_bag.svg alt="shopping cart"></a>
-            <a href="account.html"><img src = images/user_icon.svg alt="account"></a>
-            <a href="login.html">Login</a>
+            <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a class="active" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+          <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
+          <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
     </div>
 
 <div class="cart_body_content">
     <div class="cart_items">
-        <h1>Shipping</h1>
-        <!-- form for shipping information -->
-        <form action="payment.html" onsubmit="return validateForm()">
-            <div class="shipping_info">
-                <div class="shipping_info_left">
-                    <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="firstname" required placeholder="John">
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastname" required placeholder="Doe">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" required placeholder="email@domain.com">
-                    <label for="mobile">Mobile Number</label>
-                    <input type="text" id="mobile" name="mobile" required placeholder="+6587654321">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" required placeholder="50 Nanyang Ave, 639798">
-                </div>
+        <h1>Your cart</h1>
+        <p>Not ready to checkout? <a href="shop.php">Continue shopping</a></p>
+        <div class="cart_item">
+            <div class="cart_item_image">
+                <img src="images/placeholder.png" alt="placeholder">
             </div>
+            <div class="cart_item_details">
+                <h3>Product Name</h3>
+                <p>Size: US10</p>
+                <p>Quantity: 1</p>
+                <p>Price: $100</p>
+            </div>
+            <div class="cart_item_remove">
+                <button>X</button>
+            </div>
+            </div>
+        <hr>
+        <div class="cart_item">
+            <div class="cart_item_image">
+                <img src="images/placeholder.png" alt="placeholder">
+            </div>
+            <div class="cart_item_details">
+                <h3>Product Name</h3>
+                <p>Size: US10</p>
+                <p>Quantity: 1</p>
+                <p>Price: $100</p>
+            </div>
+            <div class="cart_item_remove">
+                <button>X</button>
+            </div>
+        </div>
+        <hr>
+        <div class="cart_item">
+            <div class="cart_item_image">
+                <img src="images/placeholder.png" alt="placeholder">
+            </div>
+            <div class="cart_item_details">
+                <h3>Product Name</h3>
+                <p>Size: US10</p>
+                <p>Quantity: 1</p>
+                <p>Price: $100</p>
+            </div>
+            <div class="cart_item_remove">
+                <button>X</button>
+            </div>
+        </div>
+        
     </div>
 <div class="order_summary">
     <h2>Order Summary</h2>
@@ -89,8 +131,7 @@
                 <td>$303</td>
             </tr>
         </table>
-        <button id="checkout-button">Proceed to payment</button>
-    </form>
+        <a href="shipping.php"><button id="checkout-button">Checkout</button></a>
     </div>
 <div class="checkout">
 </div>
@@ -104,8 +145,8 @@
       <p id="newsletter-description">Be the first to know about our special offers, new product launches and events</p>
     </div>
     <div class="newsletter" id = "newsletter-form">
-      <form>
-        <input type="text" name="email" placeholder="Email Address">
+      <form action="submit_newsletter.php" method="POST">
+        <input type="text" name="newsletter_email" placeholder="Email Address">
         <button type="submit" >Sign up</button>
       </form>
     </div>
