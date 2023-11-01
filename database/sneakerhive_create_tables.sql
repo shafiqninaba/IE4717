@@ -56,7 +56,6 @@
  id INT AUTO_INCREMENT,
  user_id INT,
  product_item_id INT,
- qty INT,
  CONSTRAINT pk_productsliked PRIMARY KEY (id),
  CONSTRAINT fk_productsliked_user FOREIGN KEY (user_id) REFERENCES
  site_user (id),

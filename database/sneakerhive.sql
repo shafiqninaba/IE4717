@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 01:32 PM
+-- Generation Time: Nov 01, 2023 at 01:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,8 +55,7 @@ CREATE TABLE `order_line` (
 CREATE TABLE `products_liked` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `product_item_id` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL
+  `product_item_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
