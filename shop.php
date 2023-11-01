@@ -23,7 +23,7 @@ function header_class($function){
 </head>
 
 <body>
-    <div class= "header">
+    <div class= "header" id="myTopnav">
         <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
         <a class="active" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>
@@ -33,6 +33,20 @@ function header_class($function){
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
+        <a class= "icon" href="javascript:void(0);" onclick="myFunction()">
+            <img src = images/hamburger_menu.svg alt="menu">
+        </a>
+        <script>
+            function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "header") {
+                x.className += " responsive";
+            } else {
+                x.className = "header";
+            }
+            }
+        </script>
+    </div>
     </div>
     <hr style = "margin: 0%; background-color:white">
 

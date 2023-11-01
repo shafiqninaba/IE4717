@@ -12,7 +12,7 @@ h1{
 
 /* misc */
 .hidden{
-  display: none;
+  display: none !important;
 }
 /* Navbar */
 .header {
@@ -433,6 +433,11 @@ a:link {
   cursor: pointer;
 }
 
+.sidebar ul{
+  margin: 40px;
+  padding: 0px;
+}
+
 .sidebar a{
   text-decoration: none;
   color: #000000;
@@ -517,6 +522,15 @@ ol.progtrckr li.progtrckr-todo:before {
   width: 45%;
 }
 
+.index h1{
+  margin-bottom:20px;
+}
+
+.index p{
+  margin-bottom:40px;
+  text-align: justify;
+}
+
 
 /* Slideshow container */
 .slideshow-container {
@@ -596,9 +610,13 @@ ol.progtrckr li.progtrckr-todo:before {
 }
 .aboutus {
   margin:auto;
-  text-align:center;
   width: 50%;
 }
+.aboutus p {
+  text-indent:5%;
+  text-align:justify;
+}
+
 .shop_main{
   display: flex;
   justify-content: space-between;

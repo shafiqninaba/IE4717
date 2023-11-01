@@ -24,7 +24,7 @@ function header_class($function){
 </head>
 
 <body>
-    <div class= "header">
+    <div class= "header" id="myTopnav">
         <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
         <a class="" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>

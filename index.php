@@ -49,8 +49,8 @@ function header_class($function){
     </div>
 
 <div class = index>
-    <h1 style = "margin-bottom:20px">Set the trends.</h1>
-    <p style = " margin-bottom:40px">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non officiis sit unde nostrum. Reiciendis, autem praesentium accusamus ad excepturi voluptates unde laudantium reprehenderit voluptate delectus, molestias soluta sit nesciunt temporibus. </p>
+    <h1>Set the trends.</h1>
+    <p style = " margin-bottom:40px">Whether you are looking for casual, sporty, or trendy sneakers, we have something for you. At SneakerHive, we don't follow the trends.<br><b><i>We set them.<i><b></p>
 </div>
 
 <div class="slideshow-container">
