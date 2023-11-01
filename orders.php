@@ -30,7 +30,7 @@ function header_class($function){
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
             <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="active" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
             <a class="active" href="account.php"><img src = images/user_icon.svg alt="account"></a>
             <a class="" href="login.php">Login</a>
         </div>
@@ -49,7 +49,7 @@ function header_class($function){
             <div class="progress-visual">
                 <ol class="progtrckr">
                     <li class="progtrckr-done">Order Confirmed</li><!--
-                 --><li class="progtrckr-done">Out for delivery</li><!--
+                 --><li class="progtrckr-todo">Out for delivery</li><!--
                  --><li class="progtrckr-todo">Delivered</li>
                 </ol>
             </div>
