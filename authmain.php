@@ -7,8 +7,6 @@ if (isset($_POST['username']) && isset($_POST['password']))
   // if the user has just tried to log in
   $username = $_POST['username'];
   $password = md5($_POST['password']);
-  echo $username.'<br>';
-  echo $password.'<br>';
   $query = 'select * from site_user '
            ."where email_address='$username' "
            ." and password='$password'";
