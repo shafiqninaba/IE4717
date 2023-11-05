@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 01:36 PM
+-- Generation Time: Nov 05, 2023 at 08:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -311,6 +311,7 @@ CREATE TABLE `shopping_cart_item` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `product_item_id` int(11) DEFAULT NULL,
+  `size` int(2) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
