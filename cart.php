@@ -18,7 +18,7 @@ function get_shopping_cart(){
         return array();
     }
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT shopping_cart_item.id,product_info.id AS product_item_id,product_info.name,product_info.price,product_info.product_image,shopping_cart_item.size,shopping_cart_item.qty FROM shopping_cart_item INNER JOIN product_info ON shopping_cart_item.product_item_id=product_info.id WHERE shopping_cart_item.user_id =".$user_id;
+    $query = "SELECT shopping_cart_item.id,product_info.id AS product_item_id,product_info.qty_in_stock,product_info.name,product_info.price,product_info.product_image,shopping_cart_item.size,shopping_cart_item.qty FROM shopping_cart_item INNER JOIN product_info ON shopping_cart_item.product_item_id=product_info.id WHERE shopping_cart_item.user_id =".$user_id;
     $result = $dbcnx->query($query);
     $cart = array();
     while ($row = $result->fetch_assoc()){
@@ -40,7 +40,19 @@ if(isset($_POST['remove_button'])) {
 
 // function to checkout items in shopping cart
 function checkout_items($cart_items,$user_id,$order_total){
-        include "dbconnect.php";
+    include "dbconnect.php";
+                // update product_info table to reduce stock
+        foreach ($cart_items as $index=>$item) {
+            $product_item_id = $item['product_item_id'];
+            $qty = $item['qty'];
+            // update product_info table to reduce stock
+
+            $sql = "UPDATE product_info SET qty_in_stock = qty_in_stock - ? WHERE id = ?";
+            $stmt = $dbcnx->prepare($sql);
+            $stmt->bind_param('ii', $qty,$product_item_id);
+            $stmt->execute();
+            $stmt->free_result();
+        }
         // insert data into site_user table
         $sql = "INSERT INTO shop_order (user_id,order_total) VALUES (?, ?)";
         $stmt = $dbcnx->prepare($sql);
@@ -63,16 +75,7 @@ function checkout_items($cart_items,$user_id,$order_total){
             $stmt->execute();
             $stmt->free_result();
         }
-        // update product_info table to reduce stock
-        foreach ($cart_items as $index=>$item) {
-            $product_item_id = $item['product_item_id'];
-            $qty = $item['qty'];
-            $sql = "UPDATE product_info SET qty_in_stock = qty_in_stock - ? WHERE id = ?";
-            $stmt = $dbcnx->prepare($sql);
-            $stmt->bind_param('ii', $qty,$product_item_id);
-            $stmt->execute();
-            $stmt->free_result();
-        }
+
         // remove items from shopping cart after checking out
         foreach ($cart_items as $index=>$item) {
             delete_shopping_cart_item($item['id']);
@@ -92,6 +95,7 @@ if(isset($_POST['size']) || isset($_POST['quantity'])) {
 } 
 
 $cart_items = get_shopping_cart();
+$_SESSION['cart_count'] = count($cart_items);
 $_SESSION['cart_items'] = $cart_items;
 if(isset($_POST['checkout-button'])) { 
     checkout_items($cart_items, $_SESSION['user_id'], $_POST['checkout-button']);
@@ -117,7 +121,7 @@ if(isset($_POST['checkout-button'])) {
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
             <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="active" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="active" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
@@ -133,6 +137,18 @@ if(isset($_POST['checkout-button'])) {
                 x.className = "header";
             }
             }
+            function validateQuantity(form) {
+    var quantityInput = form.form.quantity;
+    var min = parseInt(quantityInput.min);
+    var max = parseInt(quantityInput.max);
+    var quantity = parseInt(quantityInput.value);
+    if (quantity < min || quantity > max) {
+        alert("Quantity must be between " + min + " and " + max);
+        quantityInput.value = quantityInput.defaultValue;
+        return false;
+    }
+    return true;
+}
         </script>
     </div>
     </div>
@@ -152,7 +168,7 @@ if(isset($_POST['checkout-button'])) {
                 </div>
                 <div class="cart_item_details">
                     <h3><?php echo $item['name'] ?></h3>
-<form method="POST">
+<form method="POST" onsubmit="return validateQuantity()">
                     <input type="hidden" name="product_item_id" value="<?php echo $item['id'] ?>">
                     <div class = "quantity_cart">
                     <label for="size">Size (US):</label>
@@ -160,14 +176,15 @@ if(isset($_POST['checkout-button'])) {
         </div>
                     <div class = "quantity_cart">
                     <label for = "quantity">Quantity:</label>
-                    <input type = 'number' name ="quantity" min="1" value="<?php echo $item['qty'] ?>" onchange="this.form.submit();">
+                    <input type = 'number' name ="quantity" min="1" max="<?php echo $item['qty_in_stock']?>" value="<?php echo $item['qty'] ?>" onchange="if(!validateQuantity(this)) { return false; } this.form.submit();">
                     </div>
         </form>
                     <p>Price: $<?php echo $item['price'] ?></p>
                 </div>
                 <div class="cart_item_remove">
                     <form method="POST">
-                    <button title="Remove item" name="remove_button" value="<?php echo $item['id'] ?>" onclick="return confirm('Are you sure you want to remove this item?')">X</button>                    </form>
+                    <button title="Remove item" name="remove_button" value="<?php echo $item['id'] ?>" onclick="return confirm('Are you sure you want to remove this item?')">X</button>
+                </form>
                 
                 </div>
         </div>
@@ -224,6 +241,7 @@ if(isset($_POST['checkout-button'])) {
     </div>
 </div>
 </div>
+
 <?php }
 elseif (logged_in() && count($cart_items)==0){?>
 

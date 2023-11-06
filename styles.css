@@ -59,7 +59,12 @@ h1{
   display: none;
   padding-top: 15px;
 }
-
+.cart_count {
+  position: relative;
+  font-size: 0.6em;
+  bottom: 4px;
+  left: 12px;
+}
 /* @media screen and (max-width: 720px) {
   .header a {
     float: none;
