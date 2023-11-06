@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 08:23 AM
+-- Generation Time: Nov 06, 2023 at 01:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,6 +43,7 @@ CREATE TABLE `order_line` (
   `product_item_id` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -324,8 +325,7 @@ CREATE TABLE `shopping_cart_item` (
 CREATE TABLE `shop_order` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `order_date` datetime DEFAULT NULL,
-  `shipping_address` int(11) DEFAULT NULL,
+  `order_date` datetime DEFAULT current_timestamp(),
   `order_total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -403,8 +403,7 @@ ALTER TABLE `shopping_cart_item`
 --
 ALTER TABLE `shop_order`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_shoporder_user` (`user_id`),
-  ADD KEY `fk_shoporder_shipaddress` (`shipping_address`);
+  ADD KEY `fk_shoporder_user` (`user_id`);
 
 --
 -- Indexes for table `site_user`
@@ -433,7 +432,7 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT for table `order_line`
 --
 ALTER TABLE `order_line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `products_liked`
@@ -451,25 +450,25 @@ ALTER TABLE `product_info`
 -- AUTO_INCREMENT for table `shopping_cart_item`
 --
 ALTER TABLE `shopping_cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `shop_order`
 --
 ALTER TABLE `shop_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `site_user`
 --
 ALTER TABLE `site_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -500,7 +499,6 @@ ALTER TABLE `shopping_cart_item`
 -- Constraints for table `shop_order`
 --
 ALTER TABLE `shop_order`
-  ADD CONSTRAINT `fk_shoporder_shipaddress` FOREIGN KEY (`shipping_address`) REFERENCES `user_info` (`id`),
   ADD CONSTRAINT `fk_shoporder_user` FOREIGN KEY (`user_id`) REFERENCES `site_user` (`id`);
 
 --

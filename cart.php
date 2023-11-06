@@ -56,9 +56,10 @@ function checkout_items($cart_items,$user_id,$order_total){
             $product_item_id = $item['product_item_id'];
             $qty = $item['qty'];
             $price = $item['price'];
-            $sql = "INSERT INTO order_line (product_item_id,order_id,qty,price) VALUES (?,?,?,?)";
+            $size = $item['size'];
+            $sql = "INSERT INTO order_line (product_item_id,order_id,qty,size,price) VALUES (?,?,?,?,?)";
             $stmt = $dbcnx->prepare($sql);
-            $stmt->bind_param('iiid', $product_item_id,$shop_order_id,$qty,$price);
+            $stmt->bind_param('iiiid', $product_item_id,$shop_order_id,$qty,$size,$price);
             $stmt->execute();
             $stmt->free_result();
         }      
