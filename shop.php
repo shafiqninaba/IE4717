@@ -103,23 +103,23 @@ function header_class($function){
             <div class ="shop-container">
 
                 <?php
-
-                    while($row = mysqli_fetch_assoc($all_product)){
-                        
-                        $_SESSION['product_image'] = $row["product_image"];
-                        $_SESSION['name'] = $row["name"];
-                        $_SESSION['price'] = $row["price"];
+                while ($row = mysqli_fetch_assoc($all_product)) {
+                    // Set product information as query parameters
+                    $product_image = $row["product_image"];
+                    $product_name = $row["name"];
+                    $product_price = $row["price"];
+                    $product_id = $row["id"]
                 ?>
-                <div class="pro" onclick= "location.href='product.php';">
-                    <img src = "<?php echo $row["product_image"];?>" alt = "">
-                    <div class = "des">
-                        <h5><?php echo $row["name"]?></h5>
-                        <span>Brand</span>
-                        <h4>$<?php echo $row["price"]?></h4>
+                    <div class="pro" onclick="location.href='product.php?id=<?php echo $product_id;?>';">
+                        <img src="<?php echo $product_image; ?>" alt="">
+                        <div class="des">
+                            <h5><?php echo $product_name; ?></h5>
+                            <span>Brand</span>
+                            <h4>$<?php echo $product_price; ?></h4>
+                        </div>
                     </div>
-                </div>
                 <?php
-                    }
+                }
                 ?>
             </div>
         </section>

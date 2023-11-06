@@ -1,6 +1,12 @@
 
 <?php
 session_start();
+/* var_dump($_SESSION); */
+
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $_SESSION["id"] = $_GET['id'];
+
+
 // function: if user is logged in, return true, else return false
 function logged_in() {
   return isset($_SESSION['valid_user']);
@@ -9,8 +15,22 @@ function logged_in() {
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
 }
+require_once 'dbconnect.php';
 
+    $id = $_SESSION["id"];
+
+    $sql = "SELECT * FROM product_info WHERE id = $id";
+    $product = $dbcnx->query($sql);
+    $row = mysqli_fetch_assoc($product);
+    $_SESSION["image"] = $row["product_image"];
+    $_SESSION["name"] = $row["name"];
+    $_SESSION["price"] = $row["price"];
+} 
+else {
+    echo 'Invalid product identifier.';
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -50,9 +70,10 @@ function header_class($function){
         </script>
     </div>
 
+
     <div class = "single_pro">
         <section class = "pro_img">
-            <img src = "<?php echo $_SESSION['product_image'] ?>" alt ="This product canot be diplayed">
+            <img src = "<?php echo $_SESSION['image'] ?>" alt ="This product canot be diplayed">
         </section>
 
         <section class = "pro_desc">
