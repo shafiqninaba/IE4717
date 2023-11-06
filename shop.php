@@ -10,7 +10,11 @@ function header_class($function){
 }
 
 ?>
-
+<?php
+    require_once 'dbconnect.php';
+    $sql ="SELECT * FROM product_info ";
+    $all_product = $dbcnx->query($sql);
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -62,113 +66,61 @@ function header_class($function){
         </div>
 
         <section class = shop_main>
-            <div class = "filters">
-                <h4 style = "font-size: 20px;">Filters</h4>
+            <form class = "filters" action ="" method = "GET">
+<!--                 <h4 style = "font-size: 20px;">Filters</h4>
                 <label class="container">Liked
-                    <input type="checkbox" checked="checked">
+                    <input type="checkbox" id = 'liked' name = 'filter'>
                     <span class="checkmark"></span>
-                  </label><br>
+                  </label><br> -->
                 <h5 style = "font-size: 16px; margin-bottom: 10px;">Categoreies</h5>
-                <label class="container">Lifestyle
-                    <input type="checkbox" checked="checked">
+                <label class="container">Trainers
+                    <input type="checkbox" value = 'Trainers' name = 'type'>
                     <span class="checkmark"></span>
                 </label><br>
                   
-                <label class="container">Basketball
-                    <input type="checkbox" checked="checked">
+                <label class="container">Running Shoes
+                    <input type="checkbox" value = 'Running Shoes' name = 'type'>
                     <span class="checkmark"></span>
                 </label><br>
                   
-                <label class="container">Football
-                    <input type="checkbox" checked="checked">
+                <label class="container">Hi-Tops
+                    <input type="checkbox" value = 'Hi-Tops' name = 'type'>
                     <span class="checkmark"></span>
                 </label><br>
                   
-                <label class="container">Tennis
-                    <input type="checkbox" checked="checked">
+                <label class="container">Canvas
+                    <input type="checkbox" value = 'Canvas' name = 'type'>
                     <span class="checkmark"></span>
                 </label><br>
                   
-                <label class="container">Court
-                    <input type="checkbox" checked="checked">
+                <label class="container">Flipflops & Sandals
+                    <input type="checkbox" value = 'Flipflops & Sandals' name = 'type'>
                     <span class="checkmark"></span>
                 </label><br>
-                  
+                <button type="submit"> Search </button>
 
-            </div>
+            </form>
             <div class ="shop-container">
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
+
+                <?php
+
+                    while($row = mysqli_fetch_assoc($all_product)){
+                        
+                        $_SESSION['product_image'] = $row["product_image"];
+                        $_SESSION['name'] = $row["name"];
+                        $_SESSION['price'] = $row["price"];
+                ?>
+                <div class="pro" onclick= "location.href='product.php';">
+                    <img src = "<?php echo $row["product_image"];?>" alt = "">
                     <div class = "des">
-                        <h5>Product1</h5>
+                        <h5><?php echo $row["name"]?></h5>
                         <span>Brand</span>
-                        <h4>$99</h4>
+                        <h4>$<?php echo $row["price"]?></h4>
                     </div>
                 </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
-                <div class="pro">
-                    <img src = "images/placeholder.png" alt = "">
-                    <div class = "des">
-                        <h5>Product1</h5>
-                        <span>Brand</span>
-                        <h4>$99</h4>
-                    </div>
-                </div>
+                <?php
+                    }
+                ?>
             </div>
         </section>
 
