@@ -66,14 +66,11 @@
  CREATE TABLE shop_order (
  id INT AUTO_INCREMENT,
  user_id INT,
- order_date DATETIME,
- shipping_address INT,
+ order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
  order_total FLOAT,
  CONSTRAINT pk_shoporder PRIMARY KEY (id),
  CONSTRAINT fk_shoporder_user FOREIGN KEY (user_id) REFERENCES
- site_user (id),
- CONSTRAINT fk_shoporder_shipaddress FOREIGN KEY (shipping_address)
- REFERENCES user_info (id)
+ site_user (id)
  );
 
  CREATE TABLE order_line (

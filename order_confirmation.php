@@ -9,6 +9,47 @@ function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
 }
 
+function get_latest_order_details(){
+    include "dbconnect.php";
+    $user_id = $_SESSION['user_id'];
+    $query = "SELECT
+    shop_order.id,
+    shop_order.order_date,
+    user_info.first_name,
+    user_info.last_name,
+    user_info.mobile_number,
+    user_info.delivery_address
+    
+FROM
+    shop_order
+INNER JOIN user_info ON shop_order.user_id = user_info.id
+WHERE
+    shop_order.user_id = ".$user_id."
+ORDER BY
+    shop_order.order_date
+DESC
+LIMIT 1";
+    $result = $dbcnx->query($query);
+    $order_details = array();
+    while ($row = $result->fetch_assoc()){
+        $order_details[] = $row;
+    }
+    return $order_details[0];
+}
+
+//  TO DO SEND MAIL
+
+function send_mail($order_details){
+    $to      = 'root@localhost';
+$subject = 'Your SneakerHive order has been received [#'.$order_details['id'].']';
+$message = "Dear " . $order_details['first_name'] . " " . $order_details['last_name'] . ",\n\nThank you for shopping with SneakerHive! Your order (#" . $order_details['id'] . ") has been confirmed and will be shipped to:\n\n" . $order_details['delivery_address'] . "\n\nIf you have any questions or concerns, please don't hesitate to contact us at f32ee@localhost.\n\nBest regards,\nThe SneakerHive Team\n\n\n\nThis is an automated email. Please do not reply to this email.";
+$headers = 'From: root@localhost' . "\r\n" .
+    'Reply-To: root@localhost' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers,'-root@localhost');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -51,15 +92,19 @@ function header_class($function){
     </div>
     <div class="order_confirmation_title">
         <h1>Thank you for shopping with us!</h1>
-        <p>Your order has been confirmed. You will receive an email confirmation shortly.</p>
+        <p>Your order has been confirmed. An email confirmation will be sent to <b><?php echo $_SESSION['valid_user']?></b> shortly.</p>
     </div>
 <div class="cart_body_content order_confirmation">
     <div class="cart_items order_confirmation_left">
-            <p><u>Here are your order details:</u></p>
-            <p>Order Number: #123</p>
-            <p>Customer: John</p>
-            <p>Order Date: 01/01/2023</p>
-            <p>Shipping address: 50 Nanyang Ave, 639798</p>
+    <?php $order_details = get_latest_order_details();
+    send_mail($order_details);
+    ?>
+            <h3><u>Here are your order details:</u></h3>
+            <p><b>Order Number:</b> #<?php echo $order_details['id']?></p>
+            <p><b>Customer:</b> <?php echo $order_details['first_name'].' '.$order_details['last_name']?></p>
+            <p><b> Contact:</b> <?php echo $order_details['mobile_number']?></p>
+            <p><b> Order Date:</b> <?php echo $order_details['order_date']?></p>
+            <p><b> Shipping address:</b> <?php echo $order_details['delivery_address']?></p>
     </div>
 <div class="order_summary">
     <h2>Order Summary</h2>
@@ -72,30 +117,25 @@ function header_class($function){
                 <td>Size</td>
                 <td>Price</td>
             </tr>
+            
+            <?php
+        $total_price = 0;
+        foreach ($_SESSION['cart_items'] as $index=>$item) {
+            ?>
             <tr>
-                <td>1.</td>
-                <td>Product here</td>
-                <td>1</td>
-                <td>US10</td>
-                <td>$100</td>
+                <td><?php echo $index+1?></td>
+                <td><?php echo $item['name'] ?></td>
+                <td><?php echo $item['qty'] ?></td>
+                <td><?php echo 'US'.$item['size'] ?></td>
+                <td>$<?php echo $item['qty']*$item['price'] ?></td>
             </tr>
-            <tr>
-                <td>2.</td>
-                <td>Product here</td>
-                <td>1</td>
-                <td>US10</td>
-                <td>$100</td>
-            </tr>
-            <tr>
-                <td>3.</td>
-                <td>Product here</td>
-                <td>1</td>
-                <td>US10</td>
-                <td>$100</td>
-            </tr>
+            <?php
+            $total_price += $item['qty']*$item['price'];
+}
+?>
             <tr id="subtotal">
                 <td colspan="4">Subtotal</td>
-                <td>$300</td>
+                <td>$<?php echo $total_price?></td>
             </tr>
             <tr>
                 <td colspan="4">Shipping</td>
@@ -104,7 +144,7 @@ function header_class($function){
             <tr><td colspan="5"><hr></td></tr>
             <tr>
                 <td colspan="4">Total</td>
-                <td>$303</td>
+                <td>$<?php echo $total_price+3?></td>
             </tr>
         </table>
     </div>

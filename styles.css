@@ -222,15 +222,19 @@ footer{
   margin:40px;
 }
 .order_summary{
-  flex: 80%;
-  margin-right: 40px;
-  padding:30px 60px;
+  padding:30px;
   border-radius: 10px;
   background-color: #D9D9D9;
   align-items: center;
-  font-size: 20px;
+  font-size: 120%;
   font-family: inter;
   color: #000000;
+}
+
+.order_summary.fixed{
+  position:fixed;
+  top:150px;
+  right:10px;
 }
 
 .order_summary table{
@@ -240,8 +244,9 @@ footer{
 
 }
 .order_summary td{
-  padding-bottom: 10px;
+  padding: 10px;
 }
+
 
 #checkout-button{
   width:100%;
@@ -254,9 +259,8 @@ footer{
 }
 
 .cart_items{
-  width: 100%;
+  width:60%;
   padding: 30px 60px;
-  align-items: center;
   font-size: 20px;
   font-family: inter;
   color: #000000;
@@ -265,9 +269,6 @@ footer{
 display: flex;
 margin: auto;
 padding: 20px 0px;
-}
-.cart_item_remove{
-  flex: 1%;
 }
 
 .cart_item_remove button{
@@ -280,6 +281,7 @@ padding: 20px 0px;
   flex:50%;
   margin: 0px;
   padding-left: 20px;
+  padding-top:30px;
 }
 .cart_item_image{
   flex:auto;
