@@ -62,7 +62,17 @@ function checkout_items($cart_items,$user_id,$order_total){
             $stmt->bind_param('iiiid', $product_item_id,$shop_order_id,$qty,$size,$price);
             $stmt->execute();
             $stmt->free_result();
-        }      
+        }
+        // update product_info table to reduce stock
+        foreach ($cart_items as $index=>$item) {
+            $product_item_id = $item['product_item_id'];
+            $qty = $item['qty'];
+            $sql = "UPDATE product_info SET qty_in_stock = qty_in_stock - ? WHERE id = ?";
+            $stmt = $dbcnx->prepare($sql);
+            $stmt->bind_param('ii', $qty,$product_item_id);
+            $stmt->execute();
+            $stmt->free_result();
+        }
         // remove items from shopping cart after checking out
         foreach ($cart_items as $index=>$item) {
             delete_shopping_cart_item($item['id']);
