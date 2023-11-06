@@ -13,7 +13,7 @@ function header_class($function){
 function get_shopping_cart(){
 
     include "dbconnect.php";
-    
+
     if (!logged_in()) {
         return array();
     }
@@ -73,9 +73,13 @@ header("Location: payment.php");
 // function to edit qty and size of item in shopping cart
 function edit_shopping_cart_item($product_item_id,$qty,$size){
     include "dbconnect.php";
-    $query = "UPDATE shopping_cart_item SET qty =".$qty.", size =".$size." WHERE id =".$product_item_id;
+    $query = "UPDATE shopping_cart_item SET qty =".$qty.", size =".$size." WHERE id =".$product_item_id." AND user_id =".$_SESSION['user_id'];
     $result = $dbcnx->query($query);
 }
+if(isset($_POST['size']) || isset($_POST['quantity'])) { 
+    edit_shopping_cart_item($_POST['product_item_id'],$_POST['quantity'],$_POST['size']);
+} 
+
 $cart_items = get_shopping_cart();
 $_SESSION['cart_items'] = $cart_items;
 if(isset($_POST['checkout-button'])) { 
@@ -137,8 +141,17 @@ if(isset($_POST['checkout-button'])) {
                 </div>
                 <div class="cart_item_details">
                     <h3><?php echo $item['name'] ?></h3>
-                    <p>Size: <?php echo 'US'.$item['size'] ?></p>
-                    <p>Quantity: <?php echo $item['qty'] ?></p>
+<form method="POST">
+                    <input type="hidden" name="product_item_id" value="<?php echo $item['id'] ?>">
+                    <div class = "quantity_cart">
+                    <label for="size">Size (US):</label>
+                    <input type='number' name="size" min="5" max="12" value="<?php echo $item['size'] ?>" onchange="this.form.submit();">
+        </div>
+                    <div class = "quantity_cart">
+                    <label for = "quantity">Quantity:</label>
+                    <input type = 'number' name ="quantity" min="1" value="<?php echo $item['qty'] ?>" onchange="this.form.submit();">
+                    </div>
+        </form>
                     <p>Price: $<?php echo $item['price'] ?></p>
                 </div>
                 <div class="cart_item_remove">

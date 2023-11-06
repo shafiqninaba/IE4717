@@ -37,17 +37,15 @@ LIMIT 1";
     return $order_details[0];
 }
 
-//  TO DO SEND MAIL
-
+// function to send email
 function send_mail($order_details){
-    $to      = 'root@localhost';
+    $to      = 'f32ee@localhost';
 $subject = 'Your SneakerHive order has been received [#'.$order_details['id'].']';
 $message = "Dear " . $order_details['first_name'] . " " . $order_details['last_name'] . ",\n\nThank you for shopping with SneakerHive! Your order (#" . $order_details['id'] . ") has been confirmed and will be shipped to:\n\n" . $order_details['delivery_address'] . "\n\nIf you have any questions or concerns, please don't hesitate to contact us at f32ee@localhost.\n\nBest regards,\nThe SneakerHive Team\n\n\n\nThis is an automated email. Please do not reply to this email.";
-$headers = 'From: root@localhost' . "\r\n" .
-    'Reply-To: root@localhost' . "\r\n" .
+$headers = 'From: f32ee@localhost' . "\r\n" .
+    'Reply-To: f32ee@localhost' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
-
-mail($to, $subject, $message, $headers,'-root@localhost');
+mail($to, $subject, $message, $headers,'-ff32ee@localhost');
 }
 
 ?>

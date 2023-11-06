@@ -288,6 +288,15 @@ padding: 20px 0px;
   text-align: center;
 }
 
+.quantity_cart{
+  display: flex;
+  width:50%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+}
 /* shipping */
 .shipping_info{
   display: flex;
@@ -812,7 +821,6 @@ ol.progtrckr li.progtrckr-todo:before {
     border-radius: 3px;
     padding-left:30px;
     font-size:15px;
-
 
   }
 
