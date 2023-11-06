@@ -13,6 +13,10 @@ function header_class($function){
 function get_shopping_cart(){
 
     include "dbconnect.php";
+    
+    if (!logged_in()) {
+        return array();
+    }
     $user_id = $_SESSION['user_id'];
     $query = "SELECT shopping_cart_item.id,product_info.id AS product_item_id,product_info.name,product_info.price,product_info.product_image,shopping_cart_item.size,shopping_cart_item.qty FROM shopping_cart_item INNER JOIN product_info ON shopping_cart_item.product_item_id=product_info.id WHERE shopping_cart_item.user_id =".$user_id;
     $result = $dbcnx->query($query);
@@ -77,6 +81,7 @@ $_SESSION['cart_items'] = $cart_items;
 if(isset($_POST['checkout-button'])) { 
     checkout_items($cart_items, $_SESSION['user_id'], $_POST['checkout-button']);
 } 
+
 ?>
 
 <!DOCTYPE html>
@@ -159,6 +164,7 @@ if(isset($_POST['checkout-button'])) {
                 <td>Price</td>
             </tr>
             <?php
+
         $cart_items = get_shopping_cart();
         $total_price = 0;
         foreach ($cart_items as $index=>$item) {
