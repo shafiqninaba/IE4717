@@ -4,6 +4,10 @@ session_start();
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+// if not logged_in(), $_SESSION['cart_count'] = 0
+if (!logged_in()) {
+  $_SESSION['cart_count'] = 0;
+}
 
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
@@ -48,7 +52,7 @@ include "dbconnect.php";
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
             <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
             <a class="active <?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
             <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
@@ -126,7 +130,7 @@ foreach ($orders as $index=>$order) {
     foreach($order_items as $item_index=>$item){
         echo '<tr>';
         echo '<td>'.($item_index+1).'.</td>';
-        echo '<td>'.$item['name'].'</td>';
+        echo '<td>'.$item['pro_name'].'</td>';
         echo '<td>'.$item['qty'].'</td>';
         echo '<td>US'.$item['size'].'</td>';
         echo '<td>$'.$item['price'].'</td>';

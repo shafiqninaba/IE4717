@@ -4,6 +4,10 @@ session_start();
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+// if not logged_in(), $_SESSION['cart_count'] = 0
+if (!logged_in()) {
+  $_SESSION['cart_count'] = 0;
+}
 
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
@@ -29,7 +33,7 @@ function header_class($function){
         <a class="active" href="about_us.php">About Us</a>
         <div class="header-right">
             <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>

@@ -15,6 +15,7 @@ if (isset($_SESSION['valid_user'])) {
       $stmt->bind_param("iiss", $productId,$_SESSION['user_id'], $size, $quantity);
       $stmt->execute();
       $stmt->close();
+      $_SESSION['cart_count']++;
       // Add JavaScript alert 
       header("Location: shop.php");
       

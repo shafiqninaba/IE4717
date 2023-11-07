@@ -4,6 +4,10 @@ session_start();
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+// if not logged_in(), $_SESSION['cart_count'] = 0
+if (!logged_in()) {
+  $_SESSION['cart_count'] = 0;
+}
 
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
@@ -94,14 +98,8 @@ function header_class($function){
         <a class="active" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a id ="wrapper">
-                <form action = search.php method = "GET">
-                    <input class="search" placeholder="Search" type="text" name = "search">
-                    <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
-                </form>
-            </a>  
             <a class="" href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
@@ -134,9 +132,17 @@ function header_class($function){
         </div>
 
         <section class = shop_main>
-           
-            <form class = "filters" action ="filter.php" method = "GET">
-                <h5 style = "font-size: 16px; margin-bottom: 10px;">Categoreies</h5>
+            <div class="shop_top">
+        <a class ="searchbar">
+                <form action = shop.php method = "GET">
+                    <input class="search" placeholder="Search" type="text" name = "search">
+                    <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
+                </form>
+             </a>  
+        </div>
+        <div class="shop_bottom">
+            <form class = "filters" action ="shop.php" method = "GET">
+                <h5 style = "font-size: 16px; margin-bottom: 10px;">Categories</h5>
                 <label class="container">Trainers
                     <input type="checkbox" value = 'Trainers' name = 'type1'>
                     <span class="checkmark"></span>
@@ -195,7 +201,9 @@ function header_class($function){
             }
                 ?>
             </div>
+        </div>
         </section>
+
         <section class ="pages">
         <div class = "page_num">
             <?php

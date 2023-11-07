@@ -4,6 +4,10 @@ session_start();
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+// if not logged_in(), $_SESSION['cart_count'] = 0
+if (!logged_in()) {
+  $_SESSION['cart_count'] = 0;
+}
 
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
@@ -122,7 +126,7 @@ mail($to, $subject, $message, $headers,'-ff32ee@localhost');
             ?>
             <tr>
                 <td><?php echo $index+1?></td>
-                <td><?php echo $item['name'] ?></td>
+                <td><?php echo $item['pro_name'] ?></td>
                 <td><?php echo $item['qty'] ?></td>
                 <td><?php echo 'US'.$item['size'] ?></td>
                 <td>$<?php echo $item['qty']*$item['price'] ?></td>
