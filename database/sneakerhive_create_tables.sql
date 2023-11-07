@@ -31,7 +31,7 @@
  CREATE TABLE product_info (
  id INT AUTO_INCREMENT,
  category VARCHAR(200),
- name VARCHAR(500),
+ pro_name VARCHAR(500),
  price FLOAT,
  description VARCHAR(4000),
  gender VARCHAR(10),

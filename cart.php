@@ -18,7 +18,7 @@ function get_shopping_cart(){
         return array();
     }
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT shopping_cart_item.id,product_info.id AS product_item_id,product_info.qty_in_stock,product_info.name,product_info.price,product_info.product_image,shopping_cart_item.size,shopping_cart_item.qty FROM shopping_cart_item INNER JOIN product_info ON shopping_cart_item.product_item_id=product_info.id WHERE shopping_cart_item.user_id =".$user_id;
+    $query = "SELECT shopping_cart_item.id,product_info.id AS product_item_id,product_info.qty_in_stock,product_info.pro_name,product_info.price,product_info.product_image,shopping_cart_item.size,shopping_cart_item.qty FROM shopping_cart_item INNER JOIN product_info ON shopping_cart_item.product_item_id=product_info.id WHERE shopping_cart_item.user_id =".$user_id;
     $result = $dbcnx->query($query);
     $cart = array();
     while ($row = $result->fetch_assoc()){
@@ -164,10 +164,10 @@ if(isset($_POST['checkout-button'])) {
             ?>
             <div class="cart_item">
                 <div class="cart_item_image">
-                    <img src="<?php echo $item['product_image'] ?>" alt="Image for <?php echo $item['name'] ?>">
+                    <img src="<?php echo $item['product_image'] ?>" alt="Image for <?php echo $item['pro_name'] ?>">
                 </div>
                 <div class="cart_item_details">
-                    <h3><?php echo $item['name'] ?></h3>
+                    <h3><?php echo $item['pro_name'] ?></h3>
 <form method="POST" onsubmit="return validateQuantity()">
                     <input type="hidden" name="product_item_id" value="<?php echo $item['id'] ?>">
                     <div class = "quantity_cart">
@@ -212,7 +212,7 @@ if(isset($_POST['checkout-button'])) {
             ?>
             <tr>
                 <td><?php echo $index+1?></td>
-                <td><?php echo $item['name'] ?></td>
+                <td><?php echo $item['pro_name'] ?></td>
                 <td><?php echo $item['qty'] ?></td>
                 <td><?php echo 'US'.$item['size'] ?></td>
                 <td>$<?php echo $item['qty']*$item['price'] ?></td>
