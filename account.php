@@ -55,7 +55,7 @@ $delivery_address = $row['delivery_address'];
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
             <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
-            <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
+            <a class="" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
             <a class="active <?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
         </div>
