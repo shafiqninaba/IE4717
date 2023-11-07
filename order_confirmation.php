@@ -126,7 +126,7 @@ mail($to, $subject, $message, $headers,'-ff32ee@localhost');
             ?>
             <tr>
                 <td><?php echo $index+1?></td>
-                <td><?php echo $item['name'] ?></td>
+                <td><?php echo $item['pro_name'] ?></td>
                 <td><?php echo $item['qty'] ?></td>
                 <td><?php echo 'US'.$item['size'] ?></td>
                 <td>$<?php echo $item['qty']*$item['price'] ?></td>

@@ -130,7 +130,7 @@ foreach ($orders as $index=>$order) {
     foreach($order_items as $item_index=>$item){
         echo '<tr>';
         echo '<td>'.($item_index+1).'.</td>';
-        echo '<td>'.$item['name'].'</td>';
+        echo '<td>'.$item['pro_name'].'</td>';
         echo '<td>'.$item['qty'].'</td>';
         echo '<td>US'.$item['size'].'</td>';
         echo '<td>$'.$item['price'].'</td>';
