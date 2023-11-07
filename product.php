@@ -11,6 +11,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+// if not logged_in(), $_SESSION['cart_count'] = 0
+if (!logged_in()) {
+  $_SESSION['cart_count'] = 0;
+}
 
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 08:15 AM
+-- Generation Time: Nov 07, 2023 at 10:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,8 +43,16 @@ CREATE TABLE `order_line` (
   `product_item_id` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
+  `size` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_line`
+--
+
+INSERT INTO `order_line` (`id`, `product_item_id`, `order_id`, `qty`, `size`, `price`) VALUES
+(1, 11, 2, 3, 7, 185);
 
 -- --------------------------------------------------------
 
@@ -63,7 +71,8 @@ CREATE TABLE `products_liked` (
 --
 
 INSERT INTO `products_liked` (`id`, `user_id`, `product_item_id`) VALUES
-(4, 1, 61);
+(4, 1, 61),
+(5, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -97,7 +106,7 @@ INSERT INTO `product_info` (`id`, `category`, `pro_name`, `price`, `description`
 (8, 'Trainers', 'Nike Dunk Low Junior', 119, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_CW1590-100_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (9, 'Trainers', 'New Balance 550 Junior', 129, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 2, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_GSB550WA_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (10, 'Trainers', 'Nike Dunk Low Junior', 129, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 2, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FB9109-100_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
-(11, 'Trainers', 'Nike Air Max 270 Junior', 185, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 6, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FQ2414-001_a&qlt=85&exclusive=1&qlt=92&wid=363&hei=363&v=1&fmt=auto'),
+(11, 'Trainers', 'Nike Air Max 270 Junior', 185, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 0, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FQ2414-001_a&qlt=85&exclusive=1&qlt=92&wid=363&hei=363&v=1&fmt=auto'),
 (12, 'Trainers', 'Nike Air Max 90 Junior', 175, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 10, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FQ2428-001_a&qlt=85&exclusive=1&qlt=92&wid=363&hei=363&v=1&fmt=auto'),
 (13, 'Trainers', 'Jordan Air 1 Mid Junior', 159, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 1, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DQ8423-401_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (14, 'Trainers', 'Nike Air Max 90 SE Junior', 165, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DZ2888-100_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
@@ -331,10 +340,17 @@ CREATE TABLE `shopping_cart_item` (
 CREATE TABLE `shop_order` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `order_date` datetime DEFAULT NULL,
-  `shipping_address` int(11) DEFAULT NULL,
+  `order_date` datetime DEFAULT current_timestamp(),
   `order_total` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shop_order`
+--
+
+INSERT INTO `shop_order` (`id`, `user_id`, `order_date`, `order_total`) VALUES
+(1, 2, NULL, 558),
+(2, 2, '2023-11-07 17:15:43', 558);
 
 -- --------------------------------------------------------
 
@@ -353,7 +369,8 @@ CREATE TABLE `site_user` (
 --
 
 INSERT INTO `site_user` (`id`, `email_address`, `password`) VALUES
-(1, 'arpith.koshy@gmail.com', 'c83b2d5bb1fb4d93d9d064593ed6eea2');
+(1, 'arpith.koshy@gmail.com', 'c83b2d5bb1fb4d93d9d064593ed6eea2'),
+(2, 'saltaddict99@gmail.com', '7815696ecbf1c96e6894b779456d330e');
 
 -- --------------------------------------------------------
 
@@ -377,7 +394,8 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`id`, `user_id`, `first_name`, `last_name`, `mobile_number`, `gender`, `date_of_birth`, `delivery_address`) VALUES
-(1, 1, 'Arpith', 'Koshy', '97222735', 'male', '2023-08-02', '25 Woodleigh Close');
+(1, 1, 'Arpith', 'Koshy', '97222735', 'male', '2023-08-02', '25 Woodleigh Close'),
+(2, 2, 'Shafiq', 'Ninaba', '93296379', 'male', '2023-11-02', 'Blk 853 Tampines St 83 #03-228');
 
 --
 -- Indexes for dumped tables
@@ -424,8 +442,7 @@ ALTER TABLE `shopping_cart_item`
 --
 ALTER TABLE `shop_order`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_shoporder_user` (`user_id`),
-  ADD KEY `fk_shoporder_shipaddress` (`shipping_address`);
+  ADD KEY `fk_shoporder_user` (`user_id`);
 
 --
 -- Indexes for table `site_user`
@@ -454,13 +471,13 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT for table `order_line`
 --
 ALTER TABLE `order_line`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products_liked`
 --
 ALTER TABLE `products_liked`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `product_info`
@@ -472,25 +489,25 @@ ALTER TABLE `product_info`
 -- AUTO_INCREMENT for table `shopping_cart_item`
 --
 ALTER TABLE `shopping_cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `shop_order`
 --
 ALTER TABLE `shop_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `site_user`
 --
 ALTER TABLE `site_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -521,7 +538,6 @@ ALTER TABLE `shopping_cart_item`
 -- Constraints for table `shop_order`
 --
 ALTER TABLE `shop_order`
-  ADD CONSTRAINT `fk_shoporder_shipaddress` FOREIGN KEY (`shipping_address`) REFERENCES `user_info` (`id`),
   ADD CONSTRAINT `fk_shoporder_user` FOREIGN KEY (`user_id`) REFERENCES `site_user` (`id`);
 
 --
