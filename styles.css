@@ -682,12 +682,36 @@ ol.progtrckr li.progtrckr-todo:before {
   to {opacity: 1}
 }
 .aboutus {
-  margin:auto;
-  width: 50%;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
 }
-.aboutus p {
-  text-indent:5%;
-  text-align:justify;
+
+.aboutus-title {
+  text-align: center;
+  color: #333;
+  font-size: 2em;
+}
+
+.aboutus-subtitle {
+  color: #666;
+  font-size: 1.5em;
+
+}
+
+.aboutus-text {
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5em;
+  text-align: justify;
+}
+
+.aboutus-closing {
+  text-align: right;
+  color: #666;
+  font-size: 1.2em;
 }
 
 .shop_main{
