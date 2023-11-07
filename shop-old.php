@@ -12,16 +12,6 @@ if (!logged_in()) {
 function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
 }
-// if reset button is clicked, unset all session variables
-if (isset($_GET['reset'])) {
-    unset($_SESSION['category_filter']);
-    unset($_SESSION['search_result']);
-    header("Location: shop.php");
-}
-if (isset($_SESSION['category_filter'])) {
-    echo "category filter IS SET<br>";
-    $category_filter_query = $_SESSION['category_filter_query'];
-}
 
 ?>
 <?php
@@ -29,36 +19,54 @@ if (isset($_SESSION['category_filter'])) {
     $num_results = 0;
     $max_items = 30;
     require_once 'dbconnect.php';
-    if(isset($_SESSION['search_result']) && isset($_SESSION['category_filter'])){
-        echo "search and category <br>";
-        $search = $_SESSION['search_result'];
-        $category = $_SESSION['category_filter'];
-        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ($category_filter_query)";
+    if(isset($_SESSION['search_result']) && ((($_SESSION['trainers'] !== "") || ($_SESSION['runningshoes'] !== "") || ($_SESSION['hitops'] !== "") || ($_SESSION['canvas'] !== "") || ($_SESSION['flipflopssandals'] !== "")))){
+        $trainers = $_SESSION['trainers'];
+        $runningshoes = $_SESSION['runningshoes'];
+        $hitops = $_SESSION['hitops'];
+        $canvas = $_SESSION['canvas'];
+        $flipflopssandals = $_SESSION['flipflopssandals']; 
+        $search =$_SESSION['search_result'];
+        echo $search;
+
+        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ('$trainers', '$canvas', '$runningshoes', '$hitops', '$flipflopssandals')";
         echo $sql;
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
-        if ($num_results == 0) {
-            // echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
-        }
+        // if ($num_results == 0) {
+        //     echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+        // }
     }
-    elseif (isset($_SESSION['category_filter'])){
-        echo "category filter <br>";
-        $sql = "SELECT * FROM product_info WHERE category IN ($category_filter_query)";
-        echo $sql;
-        $all_product = $dbcnx->query($sql);
-        $num_results = $all_product->num_rows;
-    }
-    elseif (isset($_SESSION['search_result'])){
-        echo "search result <br>";
+    elseif(isset($_SESSION['search_result'])){
         $search = $_SESSION['search_result'];
         $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%'";
+        $all_product = $dbcnx->query($sql);
+        $num_results = $all_product->num_rows;
+
+        if ($num_results == 0) {
+            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+        }
+        
+
+    }elseif(($_SESSION['trainers'] !== "") || ($_SESSION['runningshoes'] !== "") || ($_SESSION['hitops'] !== "") || ($_SESSION['canvas'] !== "") || ($_SESSION['flipflopssandals'] !== "")){
+        $trainers = $_SESSION['trainers'];
+        $runningshoes = $_SESSION['runningshoes'];
+        $hitops = $_SESSION['hitops'];
+        $canvas = $_SESSION['canvas'];
+        $flipflopssandals = $_SESSION['flipflopssandals']; 
+        echo $trainers;
+        echo $runningshoes;
+        echo $hitops;
+        echo $canvas;
+        echo $flipflopssandals;
+        
+
+        $sql = "SELECT * FROM product_info WHERE category IN ('$trainers', '$canvas', '$runningshoes', '$hitops', '$flipflopssandals')";
         echo $sql;
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
-    }
-    else{
-        echo "no filter <br>";
-        $sql ="SELECT * FROM product_info";
+
+    }else{
+        $sql ="SELECT * FROM product_info ";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows; 
     }
@@ -126,50 +134,40 @@ if (isset($_SESSION['category_filter'])) {
         <section class = shop_main>
             <div class="shop_top">
         <a class ="searchbar">
-                <form action = "search_and_filter.php" method = "GET">
-                <input class="search" <?php if(isset($_SESSION['search_result'])){echo "value='".$_SESSION['search_result']."'";}else{echo 'placeholder="Search"';}?> type="text" name = "search">
+                <form action = search.php method = "GET">
+                    <input class="search" placeholder="Search" type="text" name = "search">
                     <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
                 </form>
              </a>  
-             </div>
-             <div class="shop_bottom">
-             <form method = "GET">
-                <button type="submit" class="shop_button reset" name = "reset">Reset Filter</button>
-        </form>
         </div>
-
-
-
-        
         <div class="shop_bottom">
-        <form action = "search_and_filter.php" class = "filters"  method = "GET">
-    <h5 style = "font-size: 16px; margin-bottom: 10px;">Categories</h5>
-    <label class="container">Trainers
-        <input type="checkbox" value = 'Trainers' name = 'category_filter[]' <?php if (isset($_SESSION['category_filter']) && in_array('Trainers', $_SESSION['category_filter'])) {echo 'checked';} ?>>
-        <span class="checkmark"></span>
-    </label><br>
-
-    <label class="container">Running Shoes
-        <input type="checkbox" value = 'Running Shoes' name = 'category_filter[]' <?php if (isset($_SESSION['category_filter']) && in_array('Running Shoes', $_SESSION['category_filter'])) echo 'checked'; ?>>
-        <span class="checkmark"></span>
-    </label><br>
-
-    <label class="container">Hi-Tops
-        <input type="checkbox" value = 'Hi-Tops' name = 'category_filter[]' <?php if (isset($_SESSION['category_filter']) && in_array('Hi-Tops', $_SESSION['category_filter'])) echo 'checked'; ?>>
-        <span class="checkmark"></span>
-    </label><br>
-
-    <label class="container">Canvas
-        <input type="checkbox" value = 'Canvas' name = 'category_filter[]' <?php if (isset($_SESSION['category_filter']) && in_array('Canvas', $_SESSION['category_filter'])) echo 'checked'; ?>>
-        <span class="checkmark"></span>
-    </label><br>
-
-    <label class="container">Flipflops & Sandals
-        <input type="checkbox" value = 'Flip-Flops & Sandals' name = 'category_filter[]' <?php if (isset($_SESSION['category_filter']) && in_array('Flip-Flops & Sandals', $_SESSION['category_filter'])) echo 'checked'; ?>>
-        <span class="checkmark"></span>
-    </label><br>
-    <button class="shop_button" type="submit"> Search </button>
-</form>
+            <form class = "filters" action ="filter.php" method = "GET">
+                <h5 style = "font-size: 16px; margin-bottom: 10px;">Categories</h5>
+                <label class="container">Trainers
+                    <input type="checkbox" value = 'Trainers' name = 'type1'>
+                    <span class="checkmark"></span>
+                </label><br>
+                  
+                <label class="container">Running Shoes
+                    <input type="checkbox" value = 'Running Shoes' name = 'type2'>
+                    <span class="checkmark"></span>
+                </label><br>
+                  
+                <label class="container">Hi-Tops
+                    <input type="checkbox" value = 'Hi-Tops' name = 'type3'>
+                    <span class="checkmark"></span>
+                </label><br>
+                  
+                <label class="container">Canvas
+                    <input type="checkbox" value = 'Canvas' name = 'type4'>
+                    <span class="checkmark"></span>
+                </label><br>
+                  
+                <label class="container">Flipflops & Sandals
+                    <input type="checkbox" value = 'Flip-Flops & Sandals' name = 'type5'>
+                    <span class="checkmark"></span>
+                </label><br>
+                <button type="submit"> Search </button>
 
             </form>
             <div class ="shop-container">
