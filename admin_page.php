@@ -65,7 +65,6 @@ $out_of_stock_products_list = "";
 // }
 
 
-
 ?>
 
 <!DOCTYPE html>
