@@ -11,9 +11,47 @@ function header_class($function){
 
 ?>
 <?php
+    $num_results = 0;
+    $max_items = 30;
     require_once 'dbconnect.php';
-    $sql ="SELECT * FROM product_info ";
-    $all_product = $dbcnx->query($sql);
+    if(isset($_GET['search'])){
+        $search = ($_GET['search']);
+        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%'";
+        $all_product = $dbcnx->query($sql);
+        $num_results = $all_product->num_rows;
+
+        if ($num_results == 0) {
+            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+        }
+
+    }elseif(isset($GET['search']) && (isset($_GET['type1']) || isset($_GET['type2']) || isset($_GET['type3']) || isset($_GET['type4']) || isset($_GET['type5']))){
+        $trainers = $_GET['type1'];
+        $runningshoes = $_GET['type2'];
+        $hitops = $_GET['type3'];
+        $canvas = $_GET['type4'];
+        $flipflopssandals = $_GET['type5']; 
+        $search =$GET['search'];
+        echo $trainers;
+
+        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ('$trainers', '$canvas', '$flipflops', '$hitops', '$flipflopssandals')";
+        $all_product = $dbcnx->query($sql);
+        $num_results = $all_product->num_rows;
+
+    }else{
+        require_once 'dbconnect.php';
+        $sql ="SELECT * FROM product_info ";
+        $all_product = $dbcnx->query($sql);
+        $num_results = $all_product->num_rows; 
+    }
+?>
+<?php
+    $page = 0;
+    if(isset($_GET['page'])){
+        $page = ($_GET['page']);
+        $start_from = ($page - 1) * $max_items;
+    }else{
+        $start_from = 1;
+    }
 ?>
 <!DOCTYPE html>
 
@@ -21,6 +59,7 @@ function header_class($function){
 <head>
     <title>SneakerHive</title>
     <link rel="icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
@@ -32,7 +71,13 @@ function header_class($function){
         <a class="active" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a id ="wrapper">
+                <form action = shop.php method = "GET">
+                    <input class="search" placeholder="Search" type="text" name = "search">
+                    <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
+                </form>
+             </a>  
+            <a class="" href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
             <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
@@ -66,35 +111,30 @@ function header_class($function){
         </div>
 
         <section class = shop_main>
-            <form class = "filters" action ="" method = "GET">
-<!--                 <h4 style = "font-size: 20px;">Filters</h4>
-                <label class="container">Liked
-                    <input type="checkbox" id = 'liked' name = 'filter'>
-                    <span class="checkmark"></span>
-                  </label><br> -->
+            <form class = "filters" action ="shop.php" method = "GET">
                 <h5 style = "font-size: 16px; margin-bottom: 10px;">Categoreies</h5>
                 <label class="container">Trainers
-                    <input type="checkbox" value = 'Trainers' name = 'type'>
+                    <input type="checkbox" value = 'Trainers' name = 'type1'>
                     <span class="checkmark"></span>
                 </label><br>
                   
                 <label class="container">Running Shoes
-                    <input type="checkbox" value = 'Running Shoes' name = 'type'>
+                    <input type="checkbox" value = 'Running Shoes' name = 'type2'>
                     <span class="checkmark"></span>
                 </label><br>
                   
                 <label class="container">Hi-Tops
-                    <input type="checkbox" value = 'Hi-Tops' name = 'type'>
+                    <input type="checkbox" value = 'Hi-Tops' name = 'type3'>
                     <span class="checkmark"></span>
                 </label><br>
                   
                 <label class="container">Canvas
-                    <input type="checkbox" value = 'Canvas' name = 'type'>
+                    <input type="checkbox" value = 'Canvas' name = 'type4'>
                     <span class="checkmark"></span>
                 </label><br>
                   
                 <label class="container">Flipflops & Sandals
-                    <input type="checkbox" value = 'Flipflops & Sandals' name = 'type'>
+                    <input type="checkbox" value = 'Flipflops & Sandals' name = 'type5'>
                     <span class="checkmark"></span>
                 </label><br>
                 <button type="submit"> Search </button>
@@ -103,12 +143,18 @@ function header_class($function){
             <div class ="shop-container">
 
                 <?php
-                while ($row = mysqli_fetch_assoc($all_product)) {
-                    // Set product information as query parameters
-                    $product_image = $row["product_image"];
-                    $product_name = $row["name"];
-                    $product_price = $row["price"];
-                    $product_id = $row["id"]
+                for ($i = $start_from; $i < $start_from + $max_items; $i++) {
+                    if ($i > 0) {
+                        mysqli_data_seek($all_product, $i);
+                    }
+                
+                    $row = mysqli_fetch_assoc($all_product);
+                
+                    if ($row) {
+                        $product_image = $row['product_image'];
+                        $product_name = $row['pro_name'];
+                        $product_price = $row['price'];
+                        $product_id = $row['id'];
                 ?>
                     <div class="pro" onclick="location.href='product.php?id=<?php echo $product_id;?>';">
                         <img src="<?php echo $product_image; ?>" alt="">
@@ -119,10 +165,25 @@ function header_class($function){
                         </div>
                     </div>
                 <?php
+                }else{
+                    break;
                 }
+            }
                 ?>
             </div>
         </section>
+        <section class ="pages">
+        <div class = "page_num">
+            <?php
+                $num_pages = ceil($num_results / $max_items);
+                for ($i = 1; $i <= $num_pages; $i++) {
+                    echo "<a href='shop.php?page=".$i."'>".$i."</a>";
+                }
+            ?>
+        </div>  
+        </section>
+      
+
 
 
     </main>

@@ -23,7 +23,7 @@ require_once 'dbconnect.php';
     $product = $dbcnx->query($sql);
     $row = mysqli_fetch_assoc($product);
     $_SESSION["image"] = $row["product_image"];
-    $_SESSION["name"] = $row["name"];
+    $_SESSION["name"] = $row["pro_name"];
     $_SESSION["price"] = $row["price"];
 } 
 else {
@@ -78,6 +78,9 @@ else {
 
         <section class = "pro_desc">
             <h2><?php echo $_SESSION['name'] ?></h2>
+            <form name = "liked" action = "addtoliked.php" method = "post">
+                <button  onclick = "Toggle()" id = 'btn' class = 'btn' type="submit"><img src = images/heart_icon.svg alt=""></button>
+            </form>
             <h3>$<?php echo $_SESSION['price'] ?></h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa quos nulla repellendus hic deserunt corrupti illo aut voluptatibus nobis ipsum? Ab recusandae odio deserunt, dolores ipsum expedita repellendus animi numquam?</p>
             <p style="color: grey; margin: 19px 0px 3px;">Size (US)</p>
@@ -130,6 +133,18 @@ else {
             </script>
         </section>
     </div>
+    <script>
+        var btn = document.getElementById('btn');
+        Toggle(){
+            if (btnvar.style.color == 'red'){
+                btnvar.style.color = 'grey';
+        }else{
+            btnvar.style.color = 'red';
+        }
+        }
+        btn.addEventListener('click', function() {
+        btn.classList.toggle('active');
+        });
 
 
     <footer>
