@@ -20,6 +20,11 @@ if (isset($_POST['username']) && isset($_POST['password']))
 
     $row = $result->fetch_assoc();
     $_SESSION['user_id'] = $row['id'];
+    // query count of items in cart
+    $query = "SELECT COUNT(*) AS count FROM shopping_cart_item WHERE user_id =".$_SESSION['user_id'];
+    $result = $dbcnx->query($query);
+    $row = $result->fetch_assoc();
+    $_SESSION['cart_count'] = $row['count'];
   }
   else
   {

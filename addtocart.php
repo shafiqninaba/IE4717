@@ -16,7 +16,7 @@ if (isset($_SESSION['valid_user'])) {
       $stmt->execute();
       $stmt->close();
       // Add JavaScript alert 
-      echo "<script>alert('Item added to cart!'); window.location.href='shop.php';</script>";
+      header("Location: shop.php");
       
       } else {
           echo "Invalid request.";

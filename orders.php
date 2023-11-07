@@ -9,6 +9,24 @@ function header_class($function){
   if ($function) {echo 'hidden';} else {echo '';}
 }
 
+function get_all_orders(){
+    include "dbconnect.php";
+    if (!logged_in()) {
+        return array();
+    }
+    $user_id = $_SESSION['user_id'];
+    $query = "SELECT id FROM shop_order WHERE user_id =".$user_id." ORDER BY id DESC";
+    $result = $dbcnx->query($query);
+    $orders = array();
+    while ($row = $result->fetch_assoc()){
+        $orders[] = $row;
+    }
+    if (count($orders) == 0) {
+        return array();
+    }
+    return $orders;
+}
+include "dbconnect.php";
 ?>
 
 <!DOCTYPE html>
@@ -57,20 +75,43 @@ function header_class($function){
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
+        <?php
+
+$orders = get_all_orders();
+if (count($orders) == 0) {
+    echo '<div class="track-order-container">';
+    echo '<h2>You have no orders yet.</h2>';
+    echo '</div>';
+}
+else {
+foreach ($orders as $index=>$order) {
+    $order_id = $order['id'];
+    $query = "SELECT * FROM order_line INNER JOIN product_info ON order_line.product_item_id=product_info.id WHERE order_line.order_id =".$order_id;
+    $result = $dbcnx->query($query);
+    $order_items = array();
+    while ($row = $result->fetch_assoc()){
+        $order_items[] = $row;
+    }
+
+
+        ?>
+
+
         <div class="track-order-container">
         <div class="track-order-container-top">
             <div class="progress-visual">
+                <?php $todo_array = array("progtrckr-done","progtrckr-todo")?>
                 <ol class="progtrckr">
-                    <li class="progtrckr-done">Order Confirmed</li><!--
-                 --><li class="progtrckr-todo">Out for delivery</li><!--
-                 --><li class="progtrckr-todo">Delivered</li>
+                <li class="progtrckr-done">Order Confirmed</li>
+                <li class="<?php echo $todo_array[array_rand($todo_array,1)]?>">Out for delivery</li>
+                <li class="progtrckr-todo">Delivered</li>
                 </ol>
             </div>
 
         </div>
         <div class="track-order-container-bottom">
             <div class="order_summary">
-                <h2>Order Summary</h2>
+                <h2>Order #<?php echo $order_id?></h2>
                 <div>
                     <table>
                         <tr>
@@ -80,30 +121,23 @@ function header_class($function){
                             <td>Size</td>
                             <td>Price</td>
                         </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>Product here</td>
-                            <td>1</td>
-                            <td>US10</td>
-                            <td>$100</td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td>Product here</td>
-                            <td>1</td>
-                            <td>US10</td>
-                            <td>$100</td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td>Product here</td>
-                            <td>1</td>
-                            <td>US10</td>
-                            <td>$100</td>
-                        </tr>
+                        <?php
+    $total_price = 0;
+    foreach($order_items as $item_index=>$item){
+        echo '<tr>';
+        echo '<td>'.($item_index+1).'.</td>';
+        echo '<td>'.$item['name'].'</td>';
+        echo '<td>'.$item['qty'].'</td>';
+        echo '<td>US'.$item['size'].'</td>';
+        echo '<td>$'.$item['price'].'</td>';
+        echo '</tr>';
+        $total_price += $item['price']*$item['qty'];
+
+    }
+                        ?>
                         <tr id="subtotal">
                             <td colspan="4">Subtotal</td>
-                            <td>$300</td>
+                            <td>$<?php echo $total_price?></td>
                         </tr>
                         <tr>
                             <td colspan="4">Shipping</td>
@@ -112,11 +146,17 @@ function header_class($function){
                         <tr><td colspan="5"><hr></td></tr>
                         <tr>
                             <td colspan="4">Total</td>
-                            <td>$303</td>
+                            <td>$<?php echo $total_price+3?></td>
                         </tr>
                     </table>
         </div>
+
     </div>
+    <hr>
+    <?php 
+        }
+    }
+        ?>
 </div>
 </div>
 </div>
