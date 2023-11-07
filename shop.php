@@ -11,11 +11,29 @@ function header_class($function){
 
 ?>
 <?php
+
     $num_results = 0;
     $max_items = 30;
     require_once 'dbconnect.php';
-    if(isset($_GET['search'])){
-        $search = ($_GET['search']);
+    if(isset($_SESSION['search_result']) && ((($_SESSION['trainers'] !== "") || ($_SESSION['runningshoes'] !== "") || ($_SESSION['hitops'] !== "") || ($_SESSION['canvas'] !== "") || ($_SESSION['flipflopssandals'] !== "")))){
+        $trainers = $_SESSION['trainers'];
+        $runningshoes = $_SESSION['runningshoes'];
+        $hitops = $_SESSION['hitops'];
+        $canvas = $_SESSION['canvas'];
+        $flipflopssandals = $_SESSION['flipflopssandals']; 
+        $search =$_SESSION['search_result'];
+        echo $search;
+
+        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ('$trainers', '$canvas', '$runningshoes', '$hitops', '$flipflopssandals')";
+        echo $sql;
+        $all_product = $dbcnx->query($sql);
+        $num_results = $all_product->num_rows;
+        // if ($num_results == 0) {
+        //     echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+        // }
+    }
+    elseif(isset($_SESSION['search_result'])){
+        $search = $_SESSION['search_result'];
         $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%'";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
@@ -23,22 +41,27 @@ function header_class($function){
         if ($num_results == 0) {
             echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
         }
+        
 
-    }elseif(isset($GET['search']) && (isset($_GET['type1']) || isset($_GET['type2']) || isset($_GET['type3']) || isset($_GET['type4']) || isset($_GET['type5']))){
-        $trainers = $_GET['type1'];
-        $runningshoes = $_GET['type2'];
-        $hitops = $_GET['type3'];
-        $canvas = $_GET['type4'];
-        $flipflopssandals = $_GET['type5']; 
-        $search =$GET['search'];
+    }elseif(($_SESSION['trainers'] !== "") || ($_SESSION['runningshoes'] !== "") || ($_SESSION['hitops'] !== "") || ($_SESSION['canvas'] !== "") || ($_SESSION['flipflopssandals'] !== "")){
+        $trainers = $_SESSION['trainers'];
+        $runningshoes = $_SESSION['runningshoes'];
+        $hitops = $_SESSION['hitops'];
+        $canvas = $_SESSION['canvas'];
+        $flipflopssandals = $_SESSION['flipflopssandals']; 
         echo $trainers;
+        echo $runningshoes;
+        echo $hitops;
+        echo $canvas;
+        echo $flipflopssandals;
+        
 
-        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ('$trainers', '$canvas', '$flipflops', '$hitops', '$flipflopssandals')";
+        $sql = "SELECT * FROM product_info WHERE category IN ('$trainers', '$canvas', '$runningshoes', '$hitops', '$flipflopssandals')";
+        echo $sql;
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
 
     }else{
-        require_once 'dbconnect.php';
         $sql ="SELECT * FROM product_info ";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows; 
@@ -46,9 +69,9 @@ function header_class($function){
 ?>
 <?php
     $page = 0;
-    if(isset($_GET['page'])){
+    if(isset($_GET['page'])&& !($_GET['page']== 1)){
         $page = ($_GET['page']);
-        $start_from = ($page - 1) * $max_items;
+        $start_from = ($page-1) * $max_items;
     }else{
         $start_from = 1;
     }
@@ -72,11 +95,11 @@ function header_class($function){
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
             <a id ="wrapper">
-                <form action = shop.php method = "GET">
+                <form action = search.php method = "GET">
                     <input class="search" placeholder="Search" type="text" name = "search">
                     <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
                 </form>
-             </a>  
+            </a>  
             <a class="" href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
             <a class="" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
@@ -111,7 +134,8 @@ function header_class($function){
         </div>
 
         <section class = shop_main>
-            <form class = "filters" action ="shop.php" method = "GET">
+           
+            <form class = "filters" action ="filter.php" method = "GET">
                 <h5 style = "font-size: 16px; margin-bottom: 10px;">Categoreies</h5>
                 <label class="container">Trainers
                     <input type="checkbox" value = 'Trainers' name = 'type1'>
@@ -134,7 +158,7 @@ function header_class($function){
                 </label><br>
                   
                 <label class="container">Flipflops & Sandals
-                    <input type="checkbox" value = 'Flipflops & Sandals' name = 'type5'>
+                    <input type="checkbox" value = 'Flip-Flops & Sandals' name = 'type5'>
                     <span class="checkmark"></span>
                 </label><br>
                 <button type="submit"> Search </button>
@@ -145,7 +169,7 @@ function header_class($function){
                 <?php
                 for ($i = $start_from; $i < $start_from + $max_items; $i++) {
                     if ($i > 0) {
-                        mysqli_data_seek($all_product, $i);
+                        mysqli_data_seek($all_product, $i-1);
                     }
                 
                     $row = mysqli_fetch_assoc($all_product);
