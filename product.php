@@ -45,6 +45,7 @@ require_once 'dbconnect.php';
     $_SESSION["image"] = $row["product_image"];
     $_SESSION["name"] = $row["pro_name"];
     $_SESSION["price"] = $row["price"];
+    $stock = $row["qty_in_stock"];
 } 
 else {
     echo 'Invalid product identifier.';
@@ -70,7 +71,7 @@ else {
         <a class="active" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a class="" href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
             <a class="" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
@@ -90,22 +91,49 @@ else {
         </script>
     </div>
 
-
+    <div class= "flex-wrapper">
     <div class = "single_pro">
         <section class = "pro_img">
             <img src = "<?php echo $_SESSION['image'] ?>" alt ="This product canot be diplayed">
         </section>
 
         <section class = "pro_desc">
-            <h2><?php echo $_SESSION['name'] ?></h2>
-            <form name = "liked" action = "addtoliked.php" method = "post">
-                <button  onclick = "Toggle()" id = 'btn' class = 'btn' type="submit"><img src = images/heart_icon.svg alt=""></button>
-            </form>
+            <div class="header-container">
+                <h2><?php echo $_SESSION['name'] ?></h2>
+                <form name="liked" action="addtoliked.php" method="post">
+                    <button onclick="toggleColor()" id="btn" class="btn" type="submit" name = "liked">
+                    <?php                          
+                            $productId = $_SESSION['id'];
+                            $userId = $_SESSION['user_id'];
+                            
+                            $query = "SELECT * FROM products_liked WHERE user_id = ? AND product_item_id = ?";
+                            $stmt = $dbcnx->prepare($query);
+                            $stmt->bind_param("ii", $userId, $productId);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                        
+                            if ($result->num_rows > 0) {
+                                echo '<img src="images/red_heart_icon.svg" alt="" class="heart-icon">';
+                            } else {
+                                echo'<img src="images/grey_heart_icon.svg" alt="" class="heart-icon">';
+                            }
+                            $stmt->close();
+                        ?>
+                    </button>
+                </form>
+            </div>
             <h3>$<?php echo $_SESSION['price'] ?></h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa quos nulla repellendus hic deserunt corrupti illo aut voluptatibus nobis ipsum? Ab recusandae odio deserunt, dolores ipsum expedita repellendus animi numquam?</p>
-            <p style="color: grey; margin: 19px 0px 3px;">Size (US)</p>
-            <form name = "order" action = "addtocart.php" method = "post" onsubmit = "return orderValidation()">
-                <ul class="size">
+                
+                <?php
+                    if ($stock == 0){
+                        echo "<p style='color: red; margin: 19px 0px 3px;'>Out of stock</p>";
+                    }
+                    else{
+                ?>
+                        <p style="color: grey; margin: 19px 0px 3px;">Size (US)</p>
+                    <form name = "order" action = "addtocart.php" method = "post" onsubmit = "return orderValidation()">
+                    <ul class="size">
                     <li>
                     <input type="radio" id="6" name="size" value= "6">
                     <label for="6">6</label>
@@ -134,12 +162,15 @@ else {
                     <input type="radio" id="12" name="size" value= "12">
                     <label for="12">12</label>
                     </li>
-                </ul><br><br>
-                <div class = "quantity" style="width:90px;">
+                     </ul><br><br>
+                    <div class = "quantity" style="width:90px;">
                     <p style="color: grey; margin: 19px 0px 3px;">Quantity</p>
                     <input type = 'number' name ="quantity" min="1" value="1">
-                </div>
-                <button type="submit"> Add to cart </button>
+                     </div>
+                        <button type="submit" class="add-to-cart-btn"> Add to cart </button>
+                <?php
+                    }
+                ?>
             </form>
             <script>
                 function orderValidation(){
@@ -154,17 +185,12 @@ else {
         </section>
     </div>
     <script>
-        var btn = document.getElementById('btn');
-        Toggle(){
-            if (btnvar.style.color == 'red'){
-                btnvar.style.color = 'grey';
-        }else{
-            btnvar.style.color = 'red';
+        function toggleColor() {
+            var heartIcon = document.querySelector('.heart-icon');
+            heartIcon.classList.toggle('red');
+            heartIcon.classList.toggle('grey');
         }
-        }
-        btn.addEventListener('click', function() {
-        btn.classList.toggle('active');
-        });
+    </script>
 
 
     <footer>
@@ -198,6 +224,7 @@ else {
           </div>
         
     </footer>
+    </div>
     
 </body>
 </html>

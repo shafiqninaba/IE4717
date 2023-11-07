@@ -45,9 +45,15 @@ if (isset($_SESSION['category_filter'])) {
     $num_results = 0;
     $max_items = 30;
     require_once 'dbconnect.php';
+    $user_id = $_SESSION['user_id'];
     if(isset($_SESSION['search_result']) && isset($_SESSION['category_filter'])){
+        $user_id = $_SESSION['user_id'];
         $search = $_SESSION['search_result'];
-        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ($category_filter_query)";
+        $sql = "SELECT *
+        FROM product_info
+        INNER JOIN products_liked
+        ON product_info.id = products_liked.product_item_id
+        WHERE products_liked.user_id = $user_id AND  pro_name LIKE '%$search%' AND category IN ($category_filter_query)";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
         if ($num_results == 0) {
@@ -56,13 +62,21 @@ if (isset($_SESSION['category_filter'])) {
         }
     }
     elseif (isset($_SESSION['category_filter'])){
-        $sql = "SELECT * FROM product_info WHERE category IN ($category_filter_query)";
+        $sql = "SELECT *
+        FROM product_info
+        INNER JOIN products_liked
+        ON product_info.id = products_liked.product_item_id
+        WHERE products_liked.user_id = $user_id AND category IN ($category_filter_query)";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
     }
     elseif (isset($_SESSION['search_result'])){
         $search = $_SESSION['search_result'];
-        $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%'";
+        $sql = "SELECT *
+        FROM product_info
+        INNER JOIN products_liked
+        ON product_info.id = products_liked.product_item_id
+        WHERE products_liked.user_id = $user_id AND pro_name LIKE '%$search%'";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
         if ($num_results == 0) {
@@ -71,7 +85,11 @@ if (isset($_SESSION['category_filter'])) {
         }
     }
     else{
-        $sql ="SELECT * FROM product_info";
+        $sql ="SELECT *
+        FROM product_info
+        INNER JOIN products_liked
+        ON product_info.id = products_liked.product_item_id
+        WHERE products_liked.user_id = $user_id";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows; 
     }
@@ -100,10 +118,10 @@ if (isset($_SESSION['category_filter'])) {
 <body>
     <div class= "header" id="myTopnav">
         <a class="" href="index.php" class="logo"><img src = images/LOGO.svg alt="sneakerhive logo"></a>
-        <a class="active" href="shop.php">Shop</a>
+        <a class="" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a class="" href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a class="active <?php header_class(!logged_in()) ?>"  href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
             <a class="" href="cart.php"><span class="cart_count"><?php echo $_SESSION['cart_count']?></span><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
@@ -128,7 +146,7 @@ if (isset($_SESSION['category_filter'])) {
 
     <main>
         <div style = "background-color: black; color: white; padding: 1px 50px 20px; margin-bottom: 30px;">
-            <h1 style = "font-weight:500; margin-bottom: 0px;">Shop Men's</h1>
+            <h1 style = "font-weight:500; margin-bottom: 0px;">Liked</h1>
             <p style=" width: 30%">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 Praesentium, cupiditate eius consectetur assumenda quod dignissimos, eos, 
                 officia veritatis dolorem iusto quisquam eveniet nam repellat voluptate sequi dicta. 
@@ -201,7 +219,7 @@ if (isset($_SESSION['category_filter'])) {
                         $product_name = $row['pro_name'];
                         $_product_category = $row['category'];
                         $product_price = $row['price'];
-                        $product_id = $row['id'];
+                        $product_id = $row['product_item_id'];
                         $product_stock = $row['qty_in_stock'];
                 ?>
                     <div class="pro" onclick="location.href='product.php?id=<?php echo $product_id;?>';">
