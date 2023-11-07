@@ -4,6 +4,22 @@ session_start();
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+
+function is_admin() {
+    if (isset($_SESSION['valid_user'])){
+        if ($_SESSION['valid_user'] == 'admin@admin.com'){
+            header("Location: admin_page.php");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
+is_admin();
 // if not logged_in(), $_SESSION['cart_count'] = 0
 if (!logged_in()) {
   $_SESSION['cart_count'] = 0;
@@ -18,8 +34,8 @@ if (isset($_GET['reset'])) {
     unset($_SESSION['search_result']);
     header("Location: shop.php");
 }
+
 if (isset($_SESSION['category_filter'])) {
-    echo "category filter IS SET<br>";
     $category_filter_query = $_SESSION['category_filter_query'];
 }
 
@@ -30,34 +46,31 @@ if (isset($_SESSION['category_filter'])) {
     $max_items = 30;
     require_once 'dbconnect.php';
     if(isset($_SESSION['search_result']) && isset($_SESSION['category_filter'])){
-        echo "search and category <br>";
         $search = $_SESSION['search_result'];
-        $category = $_SESSION['category_filter'];
         $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%' AND category IN ($category_filter_query)";
-        echo $sql;
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
         if ($num_results == 0) {
-            // echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+            unset($_SESSION['search_result']);
         }
     }
     elseif (isset($_SESSION['category_filter'])){
-        echo "category filter <br>";
         $sql = "SELECT * FROM product_info WHERE category IN ($category_filter_query)";
-        echo $sql;
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
     }
     elseif (isset($_SESSION['search_result'])){
-        echo "search result <br>";
         $search = $_SESSION['search_result'];
         $sql = "SELECT * FROM product_info WHERE pro_name LIKE '%$search%'";
-        echo $sql;
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
+        if ($num_results == 0) {
+            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+            unset($_SESSION['search_result']);
+        }
     }
     else{
-        echo "no filter <br>";
         $sql ="SELECT * FROM product_info";
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows; 

@@ -12,6 +12,7 @@ include "dbconnect.php";
         $num_results = $result->num_rows;
         if ($num_results > 0) {
             echo "<script>alert('This email has been signed up for the newsletter!');</script>";
+            echo "<script>window.history.go(-1);</script>";
             exit();
         }
         else{
@@ -23,6 +24,8 @@ include "dbconnect.php";
         $dbcnx->close();
         if($result){
             echo "<script>alert('Thank you for subscribing to our newsletter!')</script>";
+            echo "<script>window.history.go(-1);</script>";
+            exit();
         }
         exit();
     }

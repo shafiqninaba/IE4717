@@ -955,3 +955,81 @@ ol.progtrckr li.progtrckr-todo:before {
 .page_num a:hover:not(.active) {
   background-color: #ddd;
 }
+
+/* admin page */
+.admin_newsletter {
+  font-family: Arial, sans-serif;
+  margin: auto;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.admin_newsletter label {
+  display: block;
+  margin: 10px 0;
+}
+
+.admin_newsletter input[type="text"], .admin_newsletter textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  max-width: 100%;
+}
+
+.admin_newsletter input[type="submit"] {
+  background-color: grey;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin_newsletter input[type="submit"]:hover {
+  background-color: black;
+}
+
+.dashboard {
+  font-family: Arial, sans-serif;
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+/* .dashboard-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+} */
+
+.dashboard-item {
+  font-size: 24px;
+  color: #333;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.dashboard-divider {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.dashboard-list {
+  padding-left: 20px;
+}
+
+table.dashboard-table caption {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
