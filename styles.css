@@ -212,6 +212,12 @@ footer{
     }
   }
 
+  .cart_count{
+    position: relative;
+    top: -4px;
+    left: 13px;
+    font-size: 0.7em;
+  }
   footer form {
     /* This bit sets up the horizontal layout */
     display:flex;

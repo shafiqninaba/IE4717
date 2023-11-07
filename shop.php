@@ -134,14 +134,14 @@ function header_class($function){
         <section class = shop_main>
             <div class="shop_top">
         <a class ="searchbar">
-                <form action = shop.php method = "GET">
+                <form action = search.php method = "GET">
                     <input class="search" placeholder="Search" type="text" name = "search">
                     <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
                 </form>
              </a>  
         </div>
         <div class="shop_bottom">
-            <form class = "filters" action ="shop.php" method = "GET">
+            <form class = "filters" action ="filter.php" method = "GET">
                 <h5 style = "font-size: 16px; margin-bottom: 10px;">Categories</h5>
                 <label class="container">Trainers
                     <input type="checkbox" value = 'Trainers' name = 'type1'>
