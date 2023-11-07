@@ -69,21 +69,18 @@ function header_class($function){
     </div>
     </div>
 
-<div class="aboutus">
-    <h1>About Us</h1>
-    <h2><i>Who We Are</i></h2>
-    <p>We are SneakerHive, a Singapore-based online store that sells sneakers from various brands and styles. We are passionate about sneakers and we want to share our love for them with you. Whether you are looking for casual, sporty, or trendy sneakers, we have something for you.</p>
-    <h2><i>What We Do</i></h2>
-    <p>We offer a wide range of sneakers at affordable prices. You can browse our catalog and find your perfect pair in just a few clicks. We also provide fast and free shipping within Singapore, as well as easy returns and exchanges. Our customer service team is always ready to assist you with any questions or issues you may have.</p>
-    <h2><i>Why Choose Us</i></h2>
-    <p>We are more than just a sneaker store. We are a community of sneaker enthusiasts who value quality, style, and comfort. We care about our customers and we want to make your shopping experience enjoyable and satisfying. We also support local and global causes that align with our values, such as environmental sustainability and social justice. By choosing us, you are not only getting a great pair of sneakers, but also making a positive impact on the world.</p>
-    <h2><i>Join Us</i></h2>
-    <p>If you share our passion for sneakers, we invite you to join our hive. You can follow us on social media, subscribe to our newsletter, or join our loyalty program to get the latest updates, exclusive deals, and rewards. You can also contact us anytime via email, phone, or chat. We would love to hear from you and get your feedback.
-<br>
-<br>
+    <div class="aboutus">
+    <h1 class="aboutus-title">About Us</h1>
+    <h2 class="aboutus-subtitle"><i>Who We Are</i></h2>
+    <p class="aboutus-text">We are SneakerHive, a Singapore-based online store that sells sneakers from various brands and styles. We are passionate about sneakers and we want to share our love for them with you. Whether you are looking for casual, sporty, or trendy sneakers, we have something for you.</p>
+    <h2 class="aboutus-subtitle"><i>What We Do</i></h2>
+    <p class="aboutus-text">We offer a wide range of sneakers at affordable prices. You can browse our catalog and find your perfect pair in just a few clicks. We also provide fast and free shipping within Singapore, as well as easy returns and exchanges. Our customer service team is always ready to assist you with any questions or issues you may have.</p>
+    <h2 class="aboutus-subtitle"><i>Why Choose Us</i></h2>
+    <p class="aboutus-text">We are more than just a sneaker store. We are a community of sneaker enthusiasts who value quality, style, and comfort. We care about our customers and we want to make your shopping experience enjoyable and satisfying. We also support local and global causes that align with our values, such as environmental sustainability and social justice. By choosing us, you are not only getting a great pair of sneakers, but also making a positive impact on the world.</p>
+    <h2 class="aboutus-subtitle"><i>Join Us</i></h2>
+    <p class="aboutus-text">If you share our passion for sneakers, we invite you to join our hive. You can follow us on social media, subscribe to our newsletter, or join our loyalty program to get the latest updates, exclusive deals, and rewards. You can also contact us anytime via email, phone, or chat. We would love to hear from you and get your feedback.<br>
 Thank you for choosing SneakerHive. We hope you enjoy your sneakers as much as we do.</p>
-<br>
-<h4><i>Happy Shopping!<br>- The SneakerHive Team</i></h4>
+    <h4 class="aboutus-closing"><i>Happy Shopping!<br>- The SneakerHive Team</i></h4>
 </div>
 
 

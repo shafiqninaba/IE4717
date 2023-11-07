@@ -682,12 +682,36 @@ ol.progtrckr li.progtrckr-todo:before {
   to {opacity: 1}
 }
 .aboutus {
-  margin:auto;
-  width: 50%;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
 }
-.aboutus p {
-  text-indent:5%;
-  text-align:justify;
+
+.aboutus-title {
+  text-align: center;
+  color: #333;
+  font-size: 2em;
+}
+
+.aboutus-subtitle {
+  color: #666;
+  font-size: 1.5em;
+
+}
+
+.aboutus-text {
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5em;
+  text-align: justify;
+}
+
+.aboutus-closing {
+  text-align: right;
+  color: #666;
+  font-size: 1.2em;
 }
 
 .shop_main{
@@ -1060,4 +1084,39 @@ table.dashboard-table caption {
   font-weight: bold;
   color: #333;
   text-align: left;
+}
+
+.scrollable-table {
+  width: 100%;
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  display: block;
+}
+
+.scrollable-table td {
+  padding: 3px;
+  border-bottom: 1px solid #ccc;
+
+}
+.out-of-stock {
+  color: red;
+}
+
+.admin_product input[type="submit"] {
+  background-color: grey; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.admin_product input[type="submit"]:hover {
+  background-color: black;
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 10:17 AM
+-- Generation Time: Nov 07, 2023 at 09:34 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,15 @@ CREATE TABLE `newsletter` (
   `id` int(11) NOT NULL,
   `email_address` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `newsletter`
+--
+
+INSERT INTO `newsletter` (`id`, `email_address`) VALUES
+(1, 'lowrenhwa88@gmail.com'),
+(2, 'dhnj99@yahoo.com'),
+(3, 'saltaddict993@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -97,7 +106,7 @@ CREATE TABLE `product_info` (
 
 INSERT INTO `product_info` (`id`, `category`, `pro_name`, `price`, `description`, `gender`, `qty_in_stock`, `product_image`) VALUES
 (1, 'Trainers', 'Jordan Air 1 Mid Junior', 159, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 7, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DQ8423-060_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
-(2, 'Trainers', 'Nike Dunk Low Junior', 129, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 0, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FB9109-401_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
+(2, 'Trainers', 'Nike Dunk Low Junior', 129, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 10, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FB9109-401_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (3, 'Trainers', 'Nike Air Force 1 Junior', 129, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DH2920-111_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (4, 'Trainers', 'New Balance 990 Junior', 149, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 6, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_GC990GL6_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (5, 'Trainers', 'New Balance 550 Junior', 129, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_GSB550WK_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
@@ -118,8 +127,8 @@ INSERT INTO `product_info` (`id`, `category`, `pro_name`, `price`, `description`
 (20, 'Trainers', 'Nike Dunk High SE Junior', 189, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 7, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FN7995-100_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (21, 'Trainers', 'Jordan Air 1 Low Junior', 139, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 5, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_553560-041_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (22, 'Trainers', 'Nike Cortez Basic Junior', 85, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 6, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_334220_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
-(23, 'Trainers', 'Jordan Air 1 Low SE Junior', 169, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 0, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FB4420-616_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
-(24, 'Trainers', 'Nike Dunk High Junior', 145, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 7, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DB2179-112_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
+(23, 'Trainers', 'Jordan Air 1 Low SE Junior', 169, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 6, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FB4420-616_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
+(24, 'Trainers', 'Nike Dunk High Junior', 145, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 29, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DB2179-112_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (25, 'Trainers', 'Nike Revolution 6 Junior', 85, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 5, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_DD1096-003_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (26, 'Trainers', 'Nike Dunk Low Junior', 125, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 10, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_668207_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (27, 'Trainers', 'Jordan Air 1 Low SE Junior', 169, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Kids\'', 2, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_FN7671-008_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
@@ -315,7 +324,7 @@ INSERT INTO `product_info` (`id`, `category`, `pro_name`, `price`, `description`
 (215, 'Hi-Tops', 'Converse Run Star Hike Women\'s', 149, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Women\'s', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_166799C-W_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (216, 'Hi-Tops', 'Converse Run Star Hike Women\'s', 149, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Women\'s', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_166800C-W_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
 (217, 'Hi-Tops', 'Vans Sk8-Hi Women\'s', 115, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Women\'s', 3, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_VN0007NSGRN_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto'),
-(218, 'Hi-Tops', 'Vans Sk8-Hi Women\'s', 109, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Women\'s', 0, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_058161_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto');
+(218, 'Hi-Tops', 'Vans Sk8-Hi Women\'s', 109, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin, diam in euismod vehicula, magna nisl condimentum erat, nec posuere lectus metus eu dui. In in lectus non libero iaculis egestas viverra id est. Donec elementum tellus eget neque tincidunt suscipit. Praesent eget nulla magna. Suspendisse mattis condimentum augue, ac dignissim sem maximus sit amet. Ut cursus iaculis quam, a interdum massa lobortis in. In varius lectus sed ante maximus consequat.', 'Women\'s', 10, 'https://i8.amplience.net/t/jpl/jdsg_product_list?plu=jd_058161_a&qlt=85&qlt=92&w=363&h=363&v=1&fmt=auto');
 
 -- --------------------------------------------------------
 
@@ -370,7 +379,8 @@ CREATE TABLE `site_user` (
 
 INSERT INTO `site_user` (`id`, `email_address`, `password`) VALUES
 (1, 'arpith.koshy@gmail.com', 'c83b2d5bb1fb4d93d9d064593ed6eea2'),
-(2, 'saltaddict99@gmail.com', '7815696ecbf1c96e6894b779456d330e');
+(2, 'saltaddict99@gmail.com', '7815696ecbf1c96e6894b779456d330e'),
+(3, 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -395,7 +405,8 @@ CREATE TABLE `user_info` (
 
 INSERT INTO `user_info` (`id`, `user_id`, `first_name`, `last_name`, `mobile_number`, `gender`, `date_of_birth`, `delivery_address`) VALUES
 (1, 1, 'Arpith', 'Koshy', '97222735', 'male', '2023-08-02', '25 Woodleigh Close'),
-(2, 2, 'Shafiq', 'Ninaba', '93296379', 'male', '2023-11-02', 'Blk 853 Tampines St 83 #03-228');
+(2, 2, 'Shafiq', 'Ninaba', '93296379', 'male', '2023-11-02', 'Blk 853 Tampines St 83 #03-228'),
+(3, 3, 'admin', 'admin', '123', 'other', '2023-11-07', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -465,7 +476,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_line`
@@ -483,13 +494,13 @@ ALTER TABLE `products_liked`
 -- AUTO_INCREMENT for table `product_info`
 --
 ALTER TABLE `product_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart_item`
 --
 ALTER TABLE `shopping_cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `shop_order`
@@ -501,13 +512,13 @@ ALTER TABLE `shop_order`
 -- AUTO_INCREMENT for table `site_user`
 --
 ALTER TABLE `site_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
