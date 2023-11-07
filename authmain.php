@@ -17,6 +17,7 @@ if (isset($_POST['username']) && isset($_POST['password']))
   {
     // if they are in the database, initialise session id
     $_SESSION['valid_user'] = $username;
+    $_SESSION['admin'] = false;
 
     $row = $result->fetch_assoc();
     $_SESSION['user_id'] = $row['id'];

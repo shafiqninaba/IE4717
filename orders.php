@@ -4,6 +4,22 @@ session_start();
 function logged_in() {
   return isset($_SESSION['valid_user']);
 }
+
+function is_admin() {
+    if (isset($_SESSION['valid_user'])){
+        if ($_SESSION['valid_user'] == 'admin@admin.com'){
+            header("Location: admin_page.php");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
+is_admin();
 // if not logged_in(), $_SESSION['cart_count'] = 0
 if (!logged_in()) {
   $_SESSION['cart_count'] = 0;
@@ -154,7 +170,7 @@ foreach ($orders as $index=>$order) {
                         </tr>
                     </table>
         </div>
-
+</div>
     </div>
     <hr>
     <?php 
@@ -164,7 +180,6 @@ foreach ($orders as $index=>$order) {
 </div>
 </div>
 </div>
-
     <footer>
     <div class = "footer">
       <div class="newsletter footer-left"  >
