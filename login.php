@@ -67,7 +67,7 @@ function header_class($function){
             }
         </script>
     </div>
-
+<div class = "flex-wrapper">
     <div class="login-container">
         <h1>Welcome Back</h1>
         <form action="authmain.php" method="post" id="loginForm">
@@ -107,7 +107,7 @@ function header_class($function){
       </div>
     
     </footer>
-        
+        </div>
 
     
 </body>

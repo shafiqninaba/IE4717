@@ -69,8 +69,11 @@ function header_class($function){
 
 <div class = index>
     <h1>Set the trends.</h1>
-    <p style = " margin-bottom:40px">Whether you are looking for casual, sporty, or trendy sneakers, we have something for you. At SneakerHive, we don't follow the trends.<br><b><i>We set them.</i><b></p>
-</div>
+    <p style = "text-align:center;">Whether you are looking for casual, sporty, or trendy sneakers, we have something for you.
+    <p style = "text-align:center;">At SneakerHive, we don't follow the trends.
+    <p style = "text-align:center;"><b><i>We set them.</i><b></p>
+
+  </div>
 
 <div class="slideshow-container">
 
