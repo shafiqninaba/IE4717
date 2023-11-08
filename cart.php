@@ -107,6 +107,11 @@ header("Location: payment.php");
 // function to edit qty and size of item in shopping cart
 function edit_shopping_cart_item($product_item_id,$qty,$size){
     include "dbconnect.php";
+    // if qty and size are empty, javascsript alert to enter qty and size
+    if ($qty == "" || $size == ""){
+        echo "<script>alert('Please enter quantity and size')</script>";
+        return;
+    }
     $query = "UPDATE shopping_cart_item SET qty =".$qty.", size =".$size." WHERE id =".$product_item_id." AND user_id =".$_SESSION['user_id'];
     $result = $dbcnx->query($query);
 }
@@ -175,6 +180,7 @@ if(isset($_POST['checkout-button'])) {
 <?php if (logged_in() && count($cart_items)>0){
     
     ?>
+    <div class= "flex-wrapper">
 <div class="cart_body_content">
     <div class="cart_items">
         <h1>Your cart</h1>
@@ -264,7 +270,7 @@ if(isset($_POST['checkout-button'])) {
 
 <?php }
 elseif (logged_in() && count($cart_items)==0){?>
-
+    <div class= "flex-wrapper">
     <div class="cart_body_content">
     <div class="cart_items">
         <h1>Your cart</h1>
@@ -318,7 +324,7 @@ else{?>
       </div>
     
     </footer>
-        
+</div>
 
     
 </body>

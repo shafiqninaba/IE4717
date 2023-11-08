@@ -32,7 +32,7 @@ function header_class($function){
 if (isset($_GET['reset'])) {
     unset($_SESSION['category_filter']);
     unset($_SESSION['search_result']);
-    header("Location: shop.php");
+    header("Location: liked.php");
 }
 
 if (isset($_SESSION['category_filter'])) {
