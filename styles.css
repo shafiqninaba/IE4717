@@ -136,6 +136,8 @@ h1{
     flex-direction: row;
     flex-shrink:0;
     gap:20px;
+    /* remove center align */
+    justify-content: flex-start;
   }
 
 .header .icon{
@@ -740,9 +742,7 @@ ol.progtrckr li.progtrckr-todo:before {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  align-items: center;
   margin:40px;
-  /* align-items: flex-start; */
 }
   .filters{
     flex:1;
@@ -822,8 +822,7 @@ ol.progtrckr li.progtrckr-todo:before {
     gap:5px;
     padding-top: 20px;
     flex-wrap: wrap;
-    /* min-width: 900px ; */
-    justify-content: center;
+
   }
     .pro{
       width :29%;

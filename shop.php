@@ -142,7 +142,7 @@ if (isset($_SESSION['category_filter'])) {
                 </form>
              </a>  
              </div>
-             <div class="shop_bottom">
+             <div class="shop_top">
              <form method = "GET">
                 <button type="submit" class="shop_button reset" name = "reset">Reset Filter</button>
         </form>
