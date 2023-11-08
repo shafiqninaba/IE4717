@@ -57,7 +57,7 @@ if (isset($_SESSION['category_filter'])) {
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
         if ($num_results == 0) {
-            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='liked.php';</script>";
             unset($_SESSION['search_result']);
         }
     }
@@ -80,7 +80,7 @@ if (isset($_SESSION['category_filter'])) {
         $all_product = $dbcnx->query($sql);
         $num_results = $all_product->num_rows;
         if ($num_results == 0) {
-            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='shop.php';</script>";
+            echo "<script>alert('No items matched your search. Try some different keywords.'); window.location.href='liked.php';</script>";
             unset($_SESSION['search_result']);
         }
     }
@@ -157,7 +157,7 @@ if (isset($_SESSION['category_filter'])) {
         <section class = shop_main>
             <div class="shop_top">
             <a class ="searchbar">
-                <form action = "search_and_filter.php" method = "GET">
+                <form action = "search_and_filter_liked.php" method = "GET">
                 <input class="search" <?php if(isset($_SESSION['search_result'])){echo "value='".$_SESSION['search_result']."'";}else{echo 'placeholder="Search"';}?> type="text" name = "search">
                     <button type="submit" class="search-icon" ><img src="images/search_icon.svg" alt="search"></button>
                 </form>
@@ -173,7 +173,7 @@ if (isset($_SESSION['category_filter'])) {
 
         
         <div class="shop_bottom">
-        <form action = "search_and_filter.php" class = "filters"  method = "GET">
+        <form action = "search_and_filter_liked.php" class = "filters"  method = "GET">
     <h5 style = "font-size: 16px; margin-bottom: 10px;">Categories</h5>
     <label class="container">Trainers
         <input type="checkbox" value = 'Trainers' name = 'category_filter[]' <?php if (isset($_SESSION['category_filter']) && in_array('Trainers', $_SESSION['category_filter'])) {echo 'checked';} ?>>
@@ -246,7 +246,7 @@ if (isset($_SESSION['category_filter'])) {
             <?php
                 $num_pages = ceil($num_results / $max_items);
                 for ($i = 1; $i <= $num_pages; $i++) {
-                    echo "<a href='shop.php?page=".$i."'>".$i."</a>";
+                    echo "<a href='liked.php?page=".$i."'>".$i."</a>";
                 }
             ?>
         </div>  
