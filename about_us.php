@@ -68,7 +68,7 @@ function header_class($function){
         </script>
     </div>
     </div>
-
+<div class="flex-wrapper">
     <div class="aboutus">
     <h1 class="aboutus-title">About Us</h1>
     <h2 class="aboutus-subtitle"><i>Who We Are</i></h2>
@@ -101,11 +101,8 @@ Thank you for choosing SneakerHive. We hope you enjoy your sneakers as much as w
             <tr><td><h4>Shop</h4></td>
                 <td><h4>About</h4></td>
             </tr>
-            <tr><td><a href="#shop">Women's</a></td>
-                <td><a href="#shop">About us</a></td>
-            </tr>
-            <tr><td><a href="#shop">Men's</a></td></tr>
-            <tr><td><a href="#shop">Kids'</a></td></tr>
+            <tr><td><a href="shop.php">Footwear</a></td>
+                <td><a href="about_us.php">About us</a></td>
         </table>
     </div>
 </div>
@@ -115,7 +112,7 @@ Thank you for choosing SneakerHive. We hope you enjoy your sneakers as much as w
       </div>
     
     </footer>
-        
+        </div>
 
     
 </body>
