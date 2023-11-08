@@ -114,6 +114,8 @@ h1{
   .shop_bottom{
     display: flex;
     flex-direction: row;
+    flex-shrink:0;
+    gap:20px;
   }
 
 .header .icon{
@@ -790,6 +792,7 @@ ol.progtrckr li.progtrckr-todo:before {
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
+
   }
   .shop-container{
     flex:4;
@@ -799,10 +802,12 @@ ol.progtrckr li.progtrckr-todo:before {
     gap:5px;
     padding-top: 20px;
     flex-wrap: wrap;
+    /* min-width: 900px ; */
+    justify-content: center;
   }
     .pro{
       width :29%;
-      min-width: 29%;
+      min-width: 250px;
       padding: 5px;
       cursor: pointer;
       margin: 10px 5px;
