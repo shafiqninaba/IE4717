@@ -266,7 +266,7 @@ if (isset($_SESSION['category_filter'])) {
     </div>
     <div class="newsletter" id = "newsletter-form">
       <form action="submit_newsletter.php" method="POST">
-        <input type="text" name="newsletter_email" placeholder="Email Address">
+        <input type="text" name="newsletter_email" placeholder="Email Address" required>
         <button type="submit" >Sign up</button>
       </form>
     </div>
