@@ -128,11 +128,8 @@ if (isset($_SESSION['category_filter'])) {
 
     <main>
         <div style = "background-color: black; color: white; padding: 1px 50px 20px; margin-bottom: 30px;">
-            <h1 style = "font-weight:500; margin-bottom: 0px;">Shop Men's</h1>
-            <p style=" width: 30%">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Praesentium, cupiditate eius consectetur assumenda quod dignissimos, eos, 
-                officia veritatis dolorem iusto quisquam eveniet nam repellat voluptate sequi dicta. 
-                Aspernatur, necessitatibus quam.
+            <h1 style = "font-weight:500; margin-bottom: 0px;">Catalogue</h1>
+            <p style=" width: 30%">A curation of the most trending pieces in the footwear industry. From the latest releases to the most popular classics, we have it all. Take your time to pick out the best pieces for your collection.
             </p>
         </div>
 
