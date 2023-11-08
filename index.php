@@ -66,7 +66,7 @@ function header_class($function){
             }
         </script>
     </div>
-
+<div class="flex-wrapper">
 <div class = index>
     <h1>Set the trends.</h1>
     <p style = "text-align:center;">Whether you are looking for casual, sporty, or trendy sneakers, we have something for you.
@@ -167,7 +167,7 @@ function header_class($function){
       </div>
     
     </footer>
-        
+  </div>
 
     
 </body>
