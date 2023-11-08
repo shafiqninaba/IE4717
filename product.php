@@ -102,7 +102,8 @@ else {
                 <h2><?php echo $_SESSION['name'] ?></h2>
                 <form name="liked" action="addtoliked.php" method="post">
                     <button onclick="toggleColor()" id="btn" class="btn" type="submit" name = "liked">
-                    <?php                          
+                    <?php  
+                        if (isset($_SESSION['valid_user'])) {                        
                             $productId = $_SESSION['id'];
                             $userId = $_SESSION['user_id'];
                             
@@ -118,6 +119,8 @@ else {
                                 echo'<img src="images/grey_heart_icon.svg" alt="" class="heart-icon">';
                             }
                             $stmt->close();
+                        }else{
+                            echo'<img src="images/grey_heart_icon.svg" alt="" class="heart-icon">';}
                         ?>
                     </button>
                 </form>
