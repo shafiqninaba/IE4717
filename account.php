@@ -175,11 +175,8 @@ $delivery_address = $row['delivery_address'];
             <tr><td><h4>Shop</h4></td>
                 <td><h4>About</h4></td>
             </tr>
-            <tr><td><a href="#shop">Women's</a></td>
-                <td><a href="#shop">About us</a></td>
-            </tr>
-            <tr><td><a href="#shop">Men's</a></td></tr>
-            <tr><td><a href="#shop">Kids'</a></td></tr>
+            <tr><td><a href="shop.php">Footwear</a></td>
+                <td><a href="about_us.php">About us</a></td>
         </table>
     </div>
 </div>
