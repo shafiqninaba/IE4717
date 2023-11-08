@@ -283,6 +283,7 @@ elseif (logged_in() && count($cart_items)==0){?>
     
 
 else{?>
+<div class= "flex-wrapper">
 <div class="cart_body_content">
     <div class="cart_items">
         <h1>Your cart</h1>

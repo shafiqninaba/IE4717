@@ -86,7 +86,7 @@ include "dbconnect.php";
             }
         </script>
     </div>
-
+<div class="flex-wrapper">
     <div class="account-content-body">
         <div class="sidebar">
             <ul>
@@ -208,6 +208,6 @@ foreach ($orders as $index=>$order) {
       </div>
     
     </footer>
-    
+</div>
 </body>
 </html>
