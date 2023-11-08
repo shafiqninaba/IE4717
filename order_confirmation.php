@@ -88,7 +88,7 @@ mail($to, $subject, $message, $headers,'-ff32ee@localhost');
         <a class="" href="shop.php">Shop</a>
         <a class="" href="about_us.php">About Us</a>
         <div class="header-right">
-            <a class="" href="#liked"><img src = images/liked_icon.svg alt="liked products"></a>
+            <a class="<?php header_class(!logged_in()) ?>" href="liked.php"><img src = images/liked_icon.svg alt="liked products"></a>
             <a class="active" href="cart.php"><img src = images/shopping_bag.svg alt="shopping cart"></a>
           <a class="<?php header_class(!logged_in()) ?>" href="account.php"><img src = images/user_icon.svg alt="account"></a>
           <a class="<?php header_class(logged_in()) ?>" href="login.php">Login</a>
