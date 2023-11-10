@@ -9,11 +9,11 @@ function validateForm() {
         return false;
     }
 
-    // var mobileRegex = /^(\+\d*)$/;
-    // if (!mobile.match(mobileRegex)) {
-    //     alert('Please include your country code in the mobile number');
-    //     return false;
-    // }
+    var mobileRegex = /^(\+\d*)$/;
+    if (!mobile.match(mobileRegex)) {
+        alert('Please include your country code in the mobile number');
+        return false;
+    }
 
     // Date of birth cannot be in the future
     var today = new Date();

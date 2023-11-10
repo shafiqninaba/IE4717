@@ -160,7 +160,7 @@ h1{
 /* RESPONSIVE NAVBAR */
 @media screen and (max-width: 720px) {
   .header a:not(:first-child) {display: none;}
-  .header a[href="#liked"]{display: none;}
+  .header a[href="liked.php"]{display: none;}
   .header a.icon {
     float: right;
     display: block;
