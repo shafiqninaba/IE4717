@@ -2,8 +2,11 @@
 NTU EEE IE4717 Web Application Design 
 
 Design project group number: F36-DG09
-Team members: MUHAMMAD SHAFIQ B NINABA, ARPITH KOSHY 
+
+Team members: MUHAMMAD SHAFIQ B NINABA, ARPITH KOSHY
+
 Project Title:  SneakerHive
+
 Summary of Project:
 
 "Sneaker Hive" is a dedicated online platform for sneaker enthusiasts and buyers. It offers a wide range of sneakers from popular brands, limited editions, and exclusive releases. The website provides a user-friendly interface for browsing, searching, and purchasing sneakers. Customers can filter their searches by gender, size and style, making it easy to find the perfect pair of sneakers.
