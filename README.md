@@ -30,7 +30,7 @@ To set up the project for development or deployment, follow these steps:
 1. **Clone the repository:**
    
    ```bash
-   git clone https://github.com/your-username/sneakerhive.git
+   git clone https://github.com/shafiqninaba/IE4717.git
    ```
 
 2. **Start XAMPP**
