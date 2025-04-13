@@ -1,5 +1,7 @@
 # SneakerHive Web Application
 
+![image](https://github.com/user-attachments/assets/8f9cccdc-152c-4306-9dcb-28442b59cb99)
+
 ## Overview
 
 SneakerHive is a dedicated online platform designed to cater to sneaker enthusiasts and buyers, offering a wide range of sneakers from popular brands, limited editions, and exclusive releases. The application provides a user-friendly interface for browsing, searching, and purchasing sneakers, with features tailored to enhance the shopping experience.
@@ -8,12 +10,32 @@ SneakerHive is a dedicated online platform designed to cater to sneaker enthusia
 
 - **Trending Footwear Showcase:** View selected trending footwear right from the homepage.
 - **Product Favorites:** Save liked footwear for viewing at a later time.
+
+![image](https://github.com/user-attachments/assets/23967e27-0d2a-429e-a4de-c7fbf1d2b0ba)
+
 - **Category Browsing:** Browse products by categories for easy viewing.
+
+![image](https://github.com/user-attachments/assets/7bc14453-c824-4287-b0fd-9155322d6077)
+
 - **Smooth Checkout Process:** Enjoy a seamless checkout experience.
+
+![image](https://github.com/user-attachments/assets/d1ae0b86-4a70-4824-a63d-94360d7cfe33)
+
+![image](https://github.com/user-attachments/assets/bad29a36-edb7-4696-8863-31cbbce68fde)
+
 - **Newsletter Subscription:** Sign up for the latest updates on product releases.
+
+![image](https://github.com/user-attachments/assets/f20010d4-e86b-46de-8d1c-a59cd3299d37)
+
 - **Account Creation:** Create a login account for a personalized shopping experience.
 - **Order Tracking:** Track your order once purchased.
+- 
+![image](https://github.com/user-attachments/assets/d3717f50-b537-4d77-9fdc-2055503233ff)
+
 - **Administrative Page:** To insert/delete/update sneaker stock, view some statistics.
+
+![image](https://github.com/user-attachments/assets/8031f69d-1bdf-4a64-8380-6719d1956baf)
+
 
 ## Technical Overview
 
